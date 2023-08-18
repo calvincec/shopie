@@ -21,8 +21,6 @@ const createProductsTable = async(req, res)=>{
         END CATCH`;
 
     const pool = await mssql.connect(sqlConfig)
-
-    
     await pool.request().query(table, (err)=>{
         if(err instanceof mssql.RequestError){
 
@@ -56,9 +54,38 @@ const createUsersTable = async(req, res)=>{
             
         END CATCH`;
 
-    const pool = await mssql.connect(sqlConfig)
+    const pool = await mssql.connect(sqlConfig) 
+    await pool.request().query(table, (err)=>{
+        if(err instanceof mssql.RequestError){
 
-    
+            console.log({Error: err.message});
+        }else{
+            console.log('Table created Successfully');
+        }
+    })
+
+    } catch (error) {
+        console.log(error);
+        return ({Error: error})
+    }
+}
+
+const createcartTable = async(req, res)=>{
+    try {
+        const table = `
+        BEGIN 
+        TRY
+            CREATE TABLE cart(
+                userId VARCHAR(200) ,
+                productId VARCHAR(500) NOT NULL
+            )
+        END TRY
+        BEGIN   
+        CATCH
+            
+        END CATCH`;
+
+    const pool = await mssql.connect(sqlConfig) 
     await pool.request().query(table, (err)=>{
         if(err instanceof mssql.RequestError){
 
