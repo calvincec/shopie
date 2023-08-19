@@ -1,6 +1,6 @@
 const {Router} = require('express')
 const { newProduct, deleteProduct, updateProduct, getOneProduct, getAllProducts } = require('../Controllers/productsController')
-const { addToCart } = require('../Controllers/cartsController')
+const { addToCart, userViewCart, removeItemFromCart } = require('../Controllers/cartsController')
 
 const productsRouter = Router()
 const cartRouter = Router()
@@ -14,6 +14,8 @@ productsRouter.get('/all', getAllProducts)
 
 
 cartRouter.post('/:userId', addToCart)
+cartRouter.get('/view/:userId', userViewCart)
+cartRouter.delete('/:cartId', removeItemFromCart)
 
 
 
