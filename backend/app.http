@@ -55,6 +55,7 @@ Content-Type: application/json
 
 
 ###USERS CONTROLLERS
+# Register user
 POST http://localhost:4503/users/register
 Content-Type: application/json
 
@@ -65,4 +66,9 @@ Content-Type: application/json
     "PhoneNumber": "254722000000"
 
 }
+###
+# get user details
+GET http://localhost:4503/users/1d5337a1-08b0-4f0e-9f5e-e0f36e0351e2
+
+
 

@@ -1,0 +1,9 @@
+CREATE  OR ALTER PROCEDURE GetUserDetailsProcedure
+@UserID NVARCHAR(255)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT * FROM Users WHERE UserID = @UserID;
+END;
+

@@ -45,6 +45,25 @@ const registerUser = async (req, res) => {
     }
 }
 
+const getUserDetails = async (req, res) =>{
+    try {
+
+        const {userID} = req.params
+
+        const user = await DB.exec('GetUserDetailsProcedure', {UserID:userID})
+        if (user.recordset.length === 0) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        return res.status(200).json(user.recordset[0]);
+
+    }catch (e) {
+        console.log(e)
+        return res.status(500).json({error: e.message})
+    }
+}
+
 module.exports = {
-    registerUser
+    registerUser,
+    getUserDetails
 }
