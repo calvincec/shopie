@@ -21,14 +21,12 @@ const createProductsTable = async(req, res)=>{
         END CATCH`;
 
     const pool = await mssql.connect(sqlConfig)
-
-    
     await pool.request().query(table, (err)=>{
         if(err instanceof mssql.RequestError){
 
             console.log({Error: err.message});
         }else{
-            console.log('Table created Successfully');
+            // console.log('Table created Successfully');
         }
     })
 
@@ -56,15 +54,47 @@ const createUsersTable = async(req, res)=>{
             
         END CATCH`;
 
-    const pool = await mssql.connect(sqlConfig)
-
-    
+    const pool = await mssql.connect(sqlConfig) 
     await pool.request().query(table, (err)=>{
         if(err instanceof mssql.RequestError){
 
             console.log({Error: err.message});
         }else{
-            console.log('Table created Successfully');
+            // console.log('Table created Successfully');
+        }
+    })
+
+    } catch (error) {
+        console.log(error);
+        return ({Error: error})
+    }
+}
+
+const createcartTable = async(req, res)=>{
+    try {
+        const table = `
+        BEGIN 
+        TRY
+            CREATE TABLE cart(
+                cartId VARCHAR(200) PRIMARY KEY,
+                userId VARCHAR(200) NOT NULL,
+                productId VARCHAR(200) NOT NULL,
+                FOREIGN KEY (userId) REFERENCES users(userId) ON DELETE CASCADE ON UPDATE CASCADE,
+                FOREIGN KEY (productId) REFERENCES products(productId) ON DELETE CASCADE ON UPDATE CASCADE 
+            )
+        END TRY
+        BEGIN   
+        CATCH
+            
+        END CATCH`;
+
+    const pool = await mssql.connect(sqlConfig) 
+    await pool.request().query(table, (err)=>{
+        if(err instanceof mssql.RequestError){
+
+            console.log({Error: err.message});
+        }else{
+            // console.log('Table created Successfully');
         }
     })
 
@@ -77,5 +107,6 @@ const createUsersTable = async(req, res)=>{
 
 module.exports = {
     createUsersTable,
-    createProductsTable    
+    createProductsTable,
+    createcartTable  
 }
