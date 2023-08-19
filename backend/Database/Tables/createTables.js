@@ -26,7 +26,7 @@ const createProductsTable = async(req, res)=>{
 
             console.log({Error: err.message});
         }else{
-            console.log('Table created Successfully');
+            // console.log('Table created Successfully');
         }
     })
 
@@ -60,7 +60,7 @@ const createUsersTable = async(req, res)=>{
 
             console.log({Error: err.message});
         }else{
-            console.log('Table created Successfully');
+            // console.log('Table created Successfully');
         }
     })
 
@@ -76,8 +76,11 @@ const createcartTable = async(req, res)=>{
         BEGIN 
         TRY
             CREATE TABLE cart(
-                userId VARCHAR(200) ,
-                productId VARCHAR(500) NOT NULL
+                cartId VARCHAR(200) PRIMARY KEY,
+                userId VARCHAR(200) NOT NULL,
+                productId VARCHAR(200) NOT NULL,
+                FOREIGN KEY (userId) REFERENCES users(userId) ON DELETE CASCADE ON UPDATE CASCADE,
+                FOREIGN KEY (productId) REFERENCES products(productId) ON DELETE CASCADE ON UPDATE CASCADE 
             )
         END TRY
         BEGIN   
@@ -91,7 +94,7 @@ const createcartTable = async(req, res)=>{
 
             console.log({Error: err.message});
         }else{
-            console.log('Table created Successfully');
+            // console.log('Table created Successfully');
         }
     })
 
@@ -104,5 +107,6 @@ const createcartTable = async(req, res)=>{
 
 module.exports = {
     createUsersTable,
-    createProductsTable    
+    createProductsTable,
+    createcartTable  
 }

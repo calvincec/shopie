@@ -46,19 +46,19 @@ function generateProductCards(productsToDisplay) {
         productContainer.appendChild(card);
     });
 }
-// searchInput.addEventListener('input', () => {
-//     const searchTerm = searchInput.value.toLowerCase();
-//     const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchTerm));
+searchInput.addEventListener('input', () => {
+    const searchTerm = searchInput.value.toLowerCase();
+    const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchTerm));
 
 
-//     generateProductCards(filteredProducts);
+    generateProductCards(filteredProducts);
 
-//     if (filteredProducts < 1) {
-//             errorElement.innerHTML = "No product(s) found"
-//     }
-//     else {
-//         errorElement.innerHTML = ""
-//     }
-// })
+    if (filteredProducts < 1) {
+            errorElement.innerHTML = "No product(s) found"
+    }
+    else {
+        errorElement.innerHTML = ""
+    }
+})
 
 generateProductCards(products);
