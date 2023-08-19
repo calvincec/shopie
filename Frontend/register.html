@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+    <div class="top-nav">
+        <div class="alternating-menu">
+            <p id="alternateText">Welcome to Shoppie</p>
+        </div>
+        <div class="menus">
+            <span class="material-symbols-outlined">person</span>
+            <span class="material-symbols-outlined">shopping_cart</span>
+        </div>
+    </div>
+
+
+    <div class="main">
+        <div class="head">
+            <div class="head1">
+               
+                <p class="message" style="color: #007BFF; ">REGISTER</p>
+                
+            </div>
+            <p>Create your account. It's free and only takes a minute</p>
+        </div>
+    
+        <form class="form" action="">
+            <div class="inputs">
+                <div class="input" style="display: flex;justify-content: space-between;">
+                    <input type="text" name="fullname" id="fullname" placeholder="Full Name">
+                    <!-- <input type="text" name="lastname" id="lastname" placeholder="Last Name"> -->
+                </div>
+                <div class="input">
+                    <input type="email" name="email" id="email" placeholder="Email">
+                </div>
+                <div class="input">
+                    <input type="text" name="pwd" id="pwd" placeholder="Password">
+                </div>
+                <div class="input">
+                    <input type="text" name="pwdc" id="pwdc" placeholder="Confirm Password">
+                </div>
+            </div>
+            <div class="errormessage">
+                All the error messages will be displayed here
+                (so comment me)
+            </div>
+            <div class="confirm">
+                <input type="checkbox" name="checkbox" id="chbx">
+                <div class="accept">I accept the <span>Terms of Use</span> & <span>Privacy Policy</span></div>
+            </div>
+            <div class="sbt">
+                <input type="button" value="Register Now">
+            </div>
+        </form>
+        
+    </div>
+
+
+    <script src="register.js"></script>
+</body>
+</html>
