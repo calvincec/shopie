@@ -1,9 +1,12 @@
 const express = require ('express');
+const { productsRouter, cartRouter } = require('./Routes/productsRoutes');
 
 
 const app = express()
 
 app.use(express.json())
+app.use('/product',productsRouter)
+app.use('/cart', cartRouter)
 
 
 app.use((err, req, res, next)=>{ 

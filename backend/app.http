@@ -1,0 +1,59 @@
+###PRODUCT CONTROLLERS
+###Add new product
+POST http://localhost:4503/product
+Content-Type: application/json
+
+{
+    "productName": "School bag",
+    "productDescription": "to carry books",
+    "price": 400000000,
+    "productImage": "https://www.bag.com",
+    "stock": 4543
+}
+
+
+###Get all products
+GET http://localhost:4503/product/all
+Content-Type: application/json
+
+###Get one product
+GET http://localhost:4503/product/one/0d8308be-3d3d-4f2f-ae30-ba24f302935a
+
+
+###Update product
+PUT http://localhost:4503/product/0d8308be-3d3d-4f2f-ae30-ba24f302935a
+Content-Type: application/json
+
+
+{
+    "productName": "Steel door",
+    "productDescription": "To prevent thieves",
+    "price": 400000000,
+    "productImage": "https://www.door.com",
+    "stock": 4543
+}
+
+###Delete product
+DELETE http://localhost:4503/product/3e868269-ea26-4103-9c3c-57c423d93296
+
+
+
+### MANAGE CART
+POST http://localhost:4503/cart/WDWCECJE;CJKDCJLDKCJDBJCDJ
+Content-Type: application/json
+
+{
+    "productId": "jckejckecelcndlc;,elmcknkecckdlcdcb"
+}
+
+
+
+
+
+
+
+
+
+###USERS CONTROLLERS
+
+
