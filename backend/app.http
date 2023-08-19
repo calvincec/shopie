@@ -63,8 +63,6 @@ Content-Type: application/json
 
 
 
-
-
 ###USERS CONTROLLERS
 
 ### Register user
@@ -75,7 +73,7 @@ Content-Type: application/json
     "UserName": "Kevin Mathenge",
     "Email": "kevinmathenge17@gmail.com",
     "Password": "12345678",
-    "PhoneNumber": "254722000000"
+    "PhoneNumber": "254721000000"
 
 }
 ### get user details
@@ -86,10 +84,11 @@ POST http://localhost:4503/users/login
 Content-Type: application/json
 
 {
-  "Email": "john@doe.com",
-  "Password": "12345678"
-
+  "Email": "kevinmathenge17@gmail.com",
+  "Password": "Garfield"
 
 }
 
+### Get all customers
+GET http://localhost:4503/users/customers/get-all-customers
 

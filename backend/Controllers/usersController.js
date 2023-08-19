@@ -9,9 +9,9 @@ dotenv.config()
 const registerUser = async (req, res) => {
     try {
         const UserID = v4();
-        console.log(req.body)
+ //       console.log(req.body)
         const {UserName, Email, Password, PhoneNumber, isAdmin} = req.body
-        console.log(UserName, Email, Password, PhoneNumber)
+    //    console.log(UserName, Email, Password, PhoneNumber)
         const existingUser = await DB.exec('CheckIfUserExistsProcedure', {Email})
 
         if (existingUser.recordset.length > 0) {
@@ -36,20 +36,20 @@ const registerUser = async (req, res) => {
                 subject: 'Account Registration',
                 html: `
         <div style="font-family: Arial, sans-serif; background-color: #f7f7f7; padding: 20px;">
-            <div style="background-color: #ffffff; border-radius: 5px; padding: 20px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.45);">
-                <h2 style="color: #333333;">Hello ${UserName},</h2>
-                <p>Welcome to Shoppie!</p>
-                <p>This is to inform you that your account has been successfully created.</p>
-                <p>Welcome aboard!</p>
-                <p>If you have any questions or need assistance, feel free to contact us.</p>
-                <p>Best regards,</p>
-                <p>The Shoppie Team</p>
+            <h2  style="color: #333333; text-align: center;">Hello ${UserName},</h2>
+        <p style="text-align: center;">Welcome to Shoppie!</p>
+        <p style="text-align: center;">This is to inform you that your account has been successfully created.</p>
+   
+                <p style="text-align: center; ">Welcome aboard!</p>
+                <p style="text-align: center; ">If you have any questions or need assistance, feel free to contact us.</p>
+                <p style="text-align: center; ">Best regards,</p>
+                <p style="text-align: center; ">The Shoppie Team</p>
             </div>
         </div>
     `,
             };
 
-            await sendMail(userMessageOptions)
+     //       await sendMail(userMessageOptions)
             return res.status(201).json({
                 message: `Account succesfully created.`
             })
@@ -129,10 +129,110 @@ const loginUser = async (req, res) => {
         })
     }
 }
+const initiatePasswordReset = async (req, res) => {
+    try {
+        const { Email } = req.body;
+
+        const user = await DB.exec("CheckIfUserExistsProcedure", { Email });
+        if (user.recordset.length === 0) {
+            return res.status(404).json({
+                error: "No account under that email exists"
+            });
+        } else {
+            // Generate a unique reset token
+            const resetToken = v4();
+
+            const result = await DB.exec('StoreResetTokenProcedure', { Email, ResetToken: resetToken });
+
+            if (result.returnValue === 0) {
+                const mailOptions = {
+                    from: process.env.ADMIN_EMAIL,
+                    to: Email,
+                    subject: 'Password Reset Request',
+                    html: `
+                    <p>Hello!</p>
+                    <p>We received a request to reset your password. Please use the following link to reset your password:</p>
+                    <a href="http://127.0.0.1:5500/Frontend/reset-password.html?token=${resetToken}">Reset Password</a>
+                    <p>If you did not request a password reset, you can ignore this email.</p>
+                `,
+                };
+
+              await sendMail(mailOptions);
+
+                return res.status(200).json({
+                    message: 'Password reset initiated. Check your email for instructions.',
+                });
+            } else {
+                return res.status(500).json({
+                    error: 'An error occurred while initiating password reset',
+                });
+            }
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            error: 'An error occurred',
+        });
+    }
+};
+
+
+
+
+const resetPassword = async (req, res) => {
+    try {
+        const { Token, NewPassword } = req.body;
+
+
+        const hashedPassword = await  bcrypt.hash(NewPassword, 10)
+        const result = await DB.exec('ResetPasswordProcedure', { Token, NewPassword: hashedPassword });
+
+
+
+        if (result.returnValue === 0) {
+            return res.status(200).json({
+                message: 'Password reset successful.',
+            });
+
+           // await sendMail()
+        } else {
+            return res.status(400).json({
+                error: 'Password reset failed. Invalid token or password.',
+            });
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            error: 'An error occurred',
+        });
+    }
+};
+
+
+const getAllCustomers = async (req, res) => {
+    try {
+
+        const users = await DB.exec("GetAllCustomersProcedure")
+        console.log(users)
+        if(users.recordset.length>0){
+            return res.status(200).json(users.recordset)
+        } else {
+            return res.status(405).json({
+                message: "No customers found"
+            })
+        }
+    }catch (e) {
+        console.log(e)
+    }
+}
+
 
 
 module.exports = {
     registerUser,
     getUserDetails,
-    loginUser
+    loginUser,
+    resetPassword,
+    initiatePasswordReset,
+    getAllCustomers
 }
