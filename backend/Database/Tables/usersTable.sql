@@ -9,4 +9,4 @@ CREATE TABLE Users (
     Password NVARCHAR(500) NOT NULL,
     ResetToken NVARCHAR(255),
     isAdmin BIT DEFAULT 0
-);
+create DATABASE shopie;

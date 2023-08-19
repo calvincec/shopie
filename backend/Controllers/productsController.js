@@ -96,7 +96,6 @@ const deleteProduct = async (req, res)=>{
         const productId = req.params.productId
         
         const pool = await mssql.connect(sqlConfig)
-    
         const result = await pool.request()
         .input("productId", productId)
         .execute('deleteProductProc')

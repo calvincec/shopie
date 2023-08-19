@@ -39,12 +39,23 @@ DELETE http://localhost:4503/product/3e868269-ea26-4103-9c3c-57c423d93296
 
 
 ### MANAGE CART
-POST http://localhost:4503/cart/WDWCECJE;CJKDCJLDKCJDBJCDJ
+
+###add to cart
+POST http://localhost:4503/cart/1
 Content-Type: application/json
 
 {
-    "productId": "jckejckecelcndlc;,elmcknkecckdlcdcb"
+    "productId": "9b017ff6-c425-4298-9c0a-efea9e18ff74"
 }
+
+
+###user view all products in cart
+GET  http://localhost:4503/cart/view/2
+
+###user remove item from cart
+DELETE http://localhost:4503/cart/165624a5-167f-4e4a-bbce-fb500cbba2b9
+Content-Type: application/json
+
 
 
 
