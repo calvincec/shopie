@@ -1,0 +1,163 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .top-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #007BFF;
+  }
+
+  .alternating-menu{
+    width: 18.00%;
+}
+.alternating-menu p {
+  margin-left: 40px;
+  margin-top: 20px;
+  font-size: 24px;
+  color: white;
+  font-weight: 900;
+}
+.menus {
+  padding: 20px;
+}
+.menus span {
+  margin-right: 20px;
+}
+
+.menus :hover {
+  cursor: pointer;
+}
+
+.material-symbols-outlined {
+    color: white;
+ }
+
+
+
+
+
+
+  .main {
+    max-width: 30vw;
+    margin: 0 auto;
+    margin-top: 40px;
+    padding: 20px;
+    /* background-color: blueviolet; */
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); 
+    background-color: white;
+    opacity: 0.99;
+    border: 3px solid #f1f1f1;
+  }
+  
+ 
+  .head {
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  .head1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* justify-content: space-between; */
+  }
+  .line{
+    width: 30%;
+    
+  }
+  
+  .head p {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+
+  .input {
+    margin-bottom: 10px;
+  }
+  
+  .input input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+
+  .confirm {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .accept {
+    font-size: 12px;
+    margin-left: 5px;
+  }
+  
+  .accept span {
+    color: #007bff;
+    cursor: pointer;
+  }
+  .accept span:hover{
+    color: #3414eb;
+  }
+  
+
+  .sbt input {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .sbt input:hover {
+    background-color: #0056b3;
+  }
+
+  #fullname{
+    width: 100%;
+  }
+  .errormessage{
+    color: red;
+    margin-bottom: 5px;
+  }
+
+  @media screen and (max-width: 989px){
+    .main{
+      max-width: 50vw;
+    }
+
+  }
+
+  @media screen and (max-width: 591px){
+    .main{
+      max-width: 80vw;
+    }
+
+  }
+  @media screen and (max-width: 300px){
+    .main{
+      max-width: 95vw;
+    }
+
+  }

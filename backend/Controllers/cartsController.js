@@ -32,8 +32,58 @@ const addToCart = async (req,res)=>{
     }
 }
 
+const userViewCart = async(req, res)=>{
+    try {
+        
+        const userId = req.params.userId
+        const pool = await mssql.connect(sqlConfig)
+        const result = await pool.request()
+        .input('userId', mssql.VarChar, userId)
+        .execute('userViewCartProc')
+       
+        if(result.rowsAffected[0] > 0){
+            
+            const arr = result.recordset
+            let sum = 0
+            for (el in arr){
+                sum = sum + arr[el].price
+            }
+            
+            return res.json({
+                products: result.recordset,
+                totalPrice: sum
+        })  
+        }else{
+                return res.status(404).json({message: "nothing in cart"})     
+        }
+
+
+    } catch (error) {
+        return res.status(500).json({Error: "Error in our server, contact the admin to resolve the issue"})
+    }
+}
+
+const removeItemFromCart = async(req,res)=>{
+    const cartId = req.params.cartId
+    const pool = await mssql.connect(sqlConfig)
+    const result = await pool.request()
+    .input("cartId", cartId)
+    .execute('removeItemFromCartProc')
+
+    if(result.rowsAffected[0] == 1){
+        return res.status(200).json({
+            message: "Product removed from cart",
+    })  
+    }else{
+            return res.status(404).json({message: "There is no such product in cart"})
+    }
+
+
+}
 
 
 module.exports = {
-    addToCart
+    addToCart,
+    userViewCart,
+    removeItemFromCart
 }
