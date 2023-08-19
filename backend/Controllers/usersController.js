@@ -3,6 +3,7 @@ const {DB} = require('../Database/helpers');
 const bcrypt = require('bcrypt')
 const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken')
+const {sendMail} = require("../Database/helpers/email");
 dotenv.config()
 
 const registerUser = async (req, res) => {
@@ -29,7 +30,26 @@ const registerUser = async (req, res) => {
         })
 
         if (result.returnValue === 0) {
-            console.log("User added succesfully");
+            const userMessageOptions = {
+                from: process.env.ADMIN_EMAIL,
+                to: Email,
+                subject: 'Account Registration',
+                html: `
+        <div style="font-family: Arial, sans-serif; background-color: #f7f7f7; padding: 20px;">
+            <div style="background-color: #ffffff; border-radius: 5px; padding: 20px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.45);">
+                <h2 style="color: #333333;">Hello ${UserName},</h2>
+                <p>Welcome to Shoppie!</p>
+                <p>This is to inform you that your account has been successfully created.</p>
+                <p>Welcome aboard!</p>
+                <p>If you have any questions or need assistance, feel free to contact us.</p>
+                <p>Best regards,</p>
+                <p>The Shoppie Team</p>
+            </div>
+        </div>
+    `,
+            };
+
+            await sendMail(userMessageOptions)
             return res.status(201).json({
                 message: `Account succesfully created.`
             })
@@ -81,7 +101,7 @@ const loginUser = async (req, res) => {
         const hashedPassword = user.recordset[0].Password;
         const passwordMatch = await bcrypt.compare(Password, hashedPassword);
 
-        if(passwordMatch){
+        if (passwordMatch) {
             const payload = {
                 UserID: user.recordset[0]?.UserID,
                 UserName: user.recordset[0]?.UserName,
@@ -89,7 +109,7 @@ const loginUser = async (req, res) => {
                 Role: user.recordset[0]?.isAdmin === 1 ? 'admin' : 'user',
                 Email: user.recordset[0].Email
             }
-            const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '36000' });
+            const token = jwt.sign(payload, process.env.SECRET, {expiresIn: '36000'});
 
             return res.status(200).json({
                 message: 'Login successful.',

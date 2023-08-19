@@ -72,8 +72,8 @@ POST http://localhost:4503/users/register
 Content-Type: application/json
 
 {
-    "UserName": "John Doe",
-    "Email": "john@doe.com",
+    "UserName": "Kevin Mathenge",
+    "Email": "kevinmathenge17@gmail.com",
     "Password": "12345678",
     "PhoneNumber": "254722000000"
 
