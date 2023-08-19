@@ -55,5 +55,14 @@ Content-Type: application/json
 
 
 ###USERS CONTROLLERS
+POST http://localhost:4503/users/register
+Content-Type: application/json
 
+{
+    "UserName": "John Doe",
+    "Email": "john@doe.com",
+    "Password": "12345678",
+    "PhoneNumber": "254722000000"
+
+}
 
