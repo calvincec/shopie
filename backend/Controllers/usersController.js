@@ -9,9 +9,7 @@ dotenv.config()
 const registerUser = async (req, res) => {
     try {
         const UserID = v4();
- //       console.log(req.body)
         const {UserName, Email, Password, PhoneNumber, isAdmin} = req.body
-    //    console.log(UserName, Email, Password, PhoneNumber)
         const existingUser = await DB.exec('CheckIfUserExistsProcedure', {Email})
 
         if (existingUser.recordset.length > 0) {
@@ -187,14 +185,38 @@ const resetPassword = async (req, res) => {
         const hashedPassword = await  bcrypt.hash(NewPassword, 10)
         const result = await DB.exec('ResetPasswordProcedure', { Token, NewPassword: hashedPassword });
 
+        const user = await DB.exec("GetUserByResetTokenProcedure", { Token  });
+        console.log(user.recordset)
 
 
+        const userMessageOptions = {
+            from: process.env.ADMIN_EMAIL,
+            to: Email,
+            subject: 'Account Registration',
+            html: `
+        <div style="font-family: Arial, sans-serif; background-color: #f7f7f7; padding: 20px;">
+            <h2  style="color: #333333; text-align: center;">Hello ${UserName},</h2>
+        <p style="text-align: center;">Welcome to Shoppie!</p>
+        <p style="text-align: center;">This is to inform you that your account has been successfully created.</p>
+   
+                <p style="text-align: center; ">Welcome aboard!</p>
+                <p style="text-align: center; ">If you have any questions or need assistance, feel free to contact us.</p>
+                <p style="text-align: center; ">Best regards,</p>
+                <p style="text-align: center; ">The Shoppie Team</p>
+            </div>
+        </div>
+    `,
+        };
         if (result.returnValue === 0) {
+
+            await sendMail(userMessageOptions)
             return res.status(200).json({
+
+
                 message: 'Password reset successful.',
             });
 
-           // await sendMail()
+
         } else {
             return res.status(400).json({
                 error: 'Password reset failed. Invalid token or password.',

@@ -41,7 +41,7 @@ const getAllProducts = async (req, res)=>{
         return res.status(200).json({ products: result.recordset})  
         
     } catch (error) {
-        return res.status(400).json({Error: "Error in our server, contact the admin to resolve the issue"})
+        return res.status(500).json({Error: "Error in our server, contact the admin to resolve the issue"})
     }
 }
 
