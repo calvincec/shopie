@@ -4,12 +4,12 @@ const bcrypt = require('bcrypt')
 const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken')
 const {sendMail} = require("../Database/helpers/email");
-const {createUsersTable} = require('../Database/Tables/createTables');
+
 dotenv.config()
 
 const registerUser = async (req, res) => {
     try {
-        createUsersTable()
+
         const UserID = v4();
         const {UserName, Email, Password, PhoneNumber, isAdmin} = req.body
         const existingUser = await DB.exec('CheckIfUserExistsProcedure', {Email})
@@ -238,7 +238,7 @@ const getAllCustomers = async (req, res) => {
         if (users.recordset.length > 0) {
             return res.status(200).json(users.recordset)
         } else {
-            return res.status(405).json({
+            return res.status(404).json({
                 message: "No customers found"
             })
         }
