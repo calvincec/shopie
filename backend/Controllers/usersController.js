@@ -4,19 +4,19 @@ const bcrypt = require('bcrypt')
 const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken')
 const {sendMail} = require("../Database/helpers/email");
-const { createUsersTable } = require('../Database/Tables/createTables');
+
 dotenv.config()
 
 const registerUser = async (req, res) => {
     try {
-        createUsersTable()
+
         const UserID = v4();
         const {UserName, Email, Password, PhoneNumber, isAdmin} = req.body
         const existingUser = await DB.exec('CheckIfUserExistsProcedure', {Email})
 
         if (existingUser.recordset.length > 0) {
             return res.status(409).json({
-                message: "An account with this email exists. Please sign in instead"
+                error: "An account with this email exists. Please sign in instead"
             })
         }
         const hashedPassword = await bcrypt.hash(Password, 10)
@@ -49,21 +49,28 @@ const registerUser = async (req, res) => {
     `,
             };
 
-     //       await sendMail(userMessageOptions)
+            //       await sendMail(userMessageOptions)
             return res.status(201).json({
                 message: `Account succesfully created.`
             })
         } else {
-            return res.status(500).json({message: 'Registration failed'});
+            return res.status(500).json({error: 'Registration failed'});
 
         }
 
 
     } catch (error) {
-        // console.log(error);
+         console.log(error.message);
+        if(error.message.includes(" Cannot insert duplicate key in object 'dbo.Users'")){
+            return res.status(500).json({
+                error: "The mobile number you have entered is in use by a current member"
+            });
+        }
+
         return res.status(500).json({
-            error: "The mobile number you have entered is in use by a current member"
+            error: 'An error occurred during registration.'
         });
+
     }
 }
 
@@ -94,7 +101,7 @@ const loginUser = async (req, res) => {
 
         if (user.recordset.length === 0) {
             return res.status(404).json({
-                message: 'Could not find an account associated with the email address',
+                error: 'Could not find an account associated with the email address',
             });
         }
 
@@ -106,7 +113,7 @@ const loginUser = async (req, res) => {
                 UserID: user.recordset[0]?.UserID,
                 UserName: user.recordset[0]?.UserName,
                 PhoneNumber: user.recordset[0].PhoneNumber,
-                Role: user.recordset[0]?.isAdmin === 1 ? 'admin' : 'user',
+                Role: user.recordset[0]?.isAdmin === true ? 'admin' : 'user',
                 Email: user.recordset[0].Email
             }
             const token = jwt.sign(payload, process.env.SECRET, {expiresIn: '36000'});
@@ -131,9 +138,9 @@ const loginUser = async (req, res) => {
 }
 const initiatePasswordReset = async (req, res) => {
     try {
-        const { Email } = req.body;
+        const {Email} = req.body;
 
-        const user = await DB.exec("CheckIfUserExistsProcedure", { Email });
+        const user = await DB.exec("CheckIfUserExistsProcedure", {Email});
         if (user.recordset.length === 0) {
             return res.status(404).json({
                 error: "No account under that email exists"
@@ -142,7 +149,7 @@ const initiatePasswordReset = async (req, res) => {
             // Generate a unique reset token
             const resetToken = v4();
 
-            const result = await DB.exec('StoreResetTokenProcedure', { Email, ResetToken: resetToken });
+            const result = await DB.exec('StoreResetTokenProcedure', {Email, ResetToken: resetToken});
 
             if (result.returnValue === 0) {
                 const mailOptions = {
@@ -157,7 +164,7 @@ const initiatePasswordReset = async (req, res) => {
                 `,
                 };
 
-              await sendMail(mailOptions);
+                await sendMail(mailOptions);
 
                 return res.status(200).json({
                     message: 'Password reset initiated. Check your email for instructions.',
@@ -177,17 +184,15 @@ const initiatePasswordReset = async (req, res) => {
 };
 
 
-
-
 const resetPassword = async (req, res) => {
     try {
-        const { Token, NewPassword } = req.body;
+        const {Token, NewPassword} = req.body;
 
 
-        const hashedPassword = await  bcrypt.hash(NewPassword, 10)
-        const result = await DB.exec('ResetPasswordProcedure', { Token, NewPassword: hashedPassword });
+        const hashedPassword = await bcrypt.hash(NewPassword, 10)
+        const result = await DB.exec('ResetPasswordProcedure', {Token, NewPassword: hashedPassword});
 
-        const user = await DB.exec("GetUserByResetTokenProcedure", { Token  });
+        const user = await DB.exec("GetUserByResetTokenProcedure", {Token});
         console.log(user.recordset)
 
 
@@ -198,12 +203,11 @@ const resetPassword = async (req, res) => {
             html: `
         <div style="font-family: Arial, sans-serif; background-color: #f7f7f7; padding: 20px;">
             <h2  style="color: #333333; text-align: center;">Hello ${UserName},</h2>
-        <p style="text-align: center;">Welcome to Shoppie!</p>
-        <p style="text-align: center;">This is to inform you that your account has been successfully created.</p>
+       
+        <p style="text-align: center;">This is to inform you that your passwod has been successfully reset.</p>
+                <p style="text-align: center;">If this was not you, please contact us immediately.</p>
    
-                <p style="text-align: center; ">Welcome aboard!</p>
-                <p style="text-align: center; ">If you have any questions or need assistance, feel free to contact us.</p>
-                <p style="text-align: center; ">Best regards,</p>
+                 <p style="text-align: center; ">Best regards,</p>
                 <p style="text-align: center; ">The Shoppie Team</p>
             </div>
         </div>
@@ -238,18 +242,17 @@ const getAllCustomers = async (req, res) => {
 
         const users = await DB.exec("GetAllCustomersProcedure")
         console.log(users)
-        if(users.recordset.length>0){
+        if (users.recordset.length > 0) {
             return res.status(200).json(users.recordset)
         } else {
-            return res.status(405).json({
+            return res.status(404).json({
                 message: "No customers found"
             })
         }
-    }catch (e) {
+    } catch (e) {
         console.log(e)
     }
 }
-
 
 
 module.exports = {

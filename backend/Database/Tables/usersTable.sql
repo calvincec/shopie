@@ -12,6 +12,7 @@ CREATE TABLE Users
     isAdmin     BIT DEFAULT 0
 )
 
-select * from Users;
 
-SELECT * FROM Users WHERE isAdmin IS null;
+
+SELECT * FROM Users;
+
