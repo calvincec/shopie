@@ -105,7 +105,7 @@ const deleteProduct = async (req, res)=>{
                 message: "Product deleted Successfully",
         })  
         }else{
-                return res.status(404).json({message: "There is no such product in our database"})
+                return res.status(404).json({message: "There is no such product in our records"})
         }
     } catch (error) {
         return res.status(400).json({Error: error})

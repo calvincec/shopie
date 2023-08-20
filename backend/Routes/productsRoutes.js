@@ -13,8 +13,8 @@ productsRouter.get('/all', getAllProducts)
 
 
 
-cartRouter.post('/:userId', addToCart)
-cartRouter.get('/view/:userId', userViewCart)
+cartRouter.post('/:UserID', addToCart)
+cartRouter.get('/view/:UserID', userViewCart)
 cartRouter.delete('/:cartId', removeItemFromCart)
 
 

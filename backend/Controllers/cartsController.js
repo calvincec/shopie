@@ -9,13 +9,13 @@ const addToCart = async (req,res)=>{
     try {
         createcartTable()
         const cartId = v4()
-        const userId = req.params.userId
+        const UserID = req.params.userId
         const {productId} = req.body
 
         const pool = await mssql.connect(sqlConfig)
         const result = await pool.request()
         .input('cartId', mssql.VarChar,cartId)
-        .input('userId', mssql.VarChar, userId)
+        .input('UserID', mssql.VarChar, UserID)
         .input('productId', mssql.VarChar, productId)
         .execute('addToCartProc')
 
@@ -35,10 +35,10 @@ const addToCart = async (req,res)=>{
 const userViewCart = async(req, res)=>{
     try {
         
-        const userId = req.params.userId
+        const UserID = req.params.UserID
         const pool = await mssql.connect(sqlConfig)
         const result = await pool.request()
-        .input('userId', mssql.VarChar, userId)
+        .input('UserID', mssql.VarChar, UserID)
         .execute('userViewCartProc')
        
         if(result.rowsAffected[0] > 0){
