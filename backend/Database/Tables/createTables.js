@@ -41,12 +41,16 @@ const createUsersTable = async(req, res)=>{
         const table = `
         BEGIN 
         TRY
-            CREATE TABLE users(
-                userId VARCHAR(200) PRIMARY KEY,
-                userName VARCHAR(500) NOT NULL,
-                userEmail VARCHAR(200) NOT NULL,
-                userpwd VARCHAR(500) NOT NULL,
-				isAdmin BIT DEFAULT 0
+        
+            CREATE TABLE Users
+            (
+                UserID      NVARCHAR(255) PRIMARY KEY,
+                Username    NVARCHAR(255) NOT NULL,
+                Email       NVARCHAR(100) NOT NULL,
+                PhoneNumber NVARCHAR(20) UNIQUE,
+                Password    NVARCHAR(500) NOT NULL,
+                ResetToken  NVARCHAR(255),
+                isAdmin     BIT DEFAULT 0
             )
         END TRY
         BEGIN   
@@ -77,9 +81,9 @@ const createcartTable = async(req, res)=>{
         TRY
             CREATE TABLE cart(
                 cartId VARCHAR(200) PRIMARY KEY,
-                userId VARCHAR(200) NOT NULL,
+                UserID VARCHAR(200) NOT NULL,
                 productId VARCHAR(200) NOT NULL,
-                FOREIGN KEY (userId) REFERENCES users(userId) ON DELETE CASCADE ON UPDATE CASCADE,
+                FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE ON UPDATE CASCADE,
                 FOREIGN KEY (productId) REFERENCES products(productId) ON DELETE CASCADE ON UPDATE CASCADE 
             )
         END TRY
