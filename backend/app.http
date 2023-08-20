@@ -4,11 +4,11 @@ POST http://localhost:4503/product
 Content-Type: application/json
 
 {
-    "productName": "TEST bag",
-    "productDescription": "to carry books",
-    "price": 400000000,
-    "productImage": "https://www.bag.com",
-    "stock": 0.67
+    "productName": "pen pen",
+    "productDescription": "fwen fwen",
+    "price": 200000000,
+    "productImage": "https://www.fwen.com",
+    "stock": 9
 }
 
 
@@ -17,11 +17,11 @@ GET http://localhost:4503/product/all
 Content-Type: application/json
 
 ###Get one product
-GET http://localhost:4503/product/one/0d8308be-3d3d-4f2f-ae30-ba24f302935a
+GET http://localhost:4503/product/one/766ae5b3-833a-4dba-9107-9ec36dc9cb14
 
 
 ###Update product
-PUT http://localhost:4503/product/0d8308be-3d3d-4f2f-ae30-ba24f302935a
+PUT http://localhost:4503/product/766ae5b3-833a-4dba-9107-9ec36dc9cb14
 Content-Type: application/json
 
 
@@ -34,7 +34,7 @@ Content-Type: application/json
 }
 
 ###Delete product
-DELETE http://localhost:4503/product/3e868269-ea26-4103-9c3c-57c423d93296
+DELETE http://localhost:4503/product/766ae5b3-833a-4dba-9107-9ec36dc9cb14
 
 
 
@@ -72,21 +72,21 @@ POST http://localhost:4503/users/register
 Content-Type: application/json
 
 {
-    "UserName": "Kevin Mathenge",
-    "Email": "kevinmathenge17@gmail.com",
+    "UserName": "Michael Wainaina",
+    "Email": "selesterat@gmail.com",
     "Password": "12345678",
-    "PhoneNumber": "254722000000"
+    "PhoneNumber": "254722000002"
 
 }
 ### get user details
-GET http://localhost:4503/users/1d5337a1-08b0-4f0e-9f5e-e0f36e0351e2
+GET http://localhost:4503/users/a64e1e14-2c6a-4feb-b4cc-3e2559d39751
 
 ### Login user
 POST http://localhost:4503/users/login
 Content-Type: application/json
 
 {
-  "Email": "john@doe.com",
+  "Email": "selesterat@gmail.com",
   "Password": "12345678"
 
 
