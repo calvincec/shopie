@@ -4,11 +4,11 @@ POST http://localhost:4503/product
 Content-Type: application/json
 
 {
-    "productName": "School bag",
-    "productDescription": "to carry books",
-    "price": 400000000,
-    "productImage": "https://www.bag.com",
-    "stock": 4543
+    "productName": "pen pen",
+    "productDescription": "fwen fwen",
+    "price": 200000000,
+    "productImage": "https://www.fwen.com",
+    "stock": 9
 }
 
 
@@ -17,11 +17,11 @@ GET http://localhost:4503/product/all
 Content-Type: application/json
 
 ###Get one product
-GET http://localhost:4503/product/one/0d8308be-3d3d-4f2f-ae30-ba24f302935a
+GET http://localhost:4503/product/one/766ae5b3-833a-4dba-9107-9ec36dc9cb14
 
 
 ###Update product
-PUT http://localhost:4503/product/0d8308be-3d3d-4f2f-ae30-ba24f302935a
+PUT http://localhost:4503/product/766ae5b3-833a-4dba-9107-9ec36dc9cb14
 Content-Type: application/json
 
 
@@ -34,7 +34,7 @@ Content-Type: application/json
 }
 
 ###Delete product
-DELETE http://localhost:4503/product/3e868269-ea26-4103-9c3c-57c423d93296
+DELETE http://localhost:4503/product/766ae5b3-833a-4dba-9107-9ec36dc9cb14
 
 
 
@@ -45,7 +45,7 @@ POST http://localhost:4503/cart/1
 Content-Type: application/json
 
 {
-    "productId": "9b017ff6-c425-4298-9c0a-efea9e18ff74"
+    "productId": "0d8308be-3d3d-4f2f-ae30-ba24f302935a"
 }
 
 
@@ -53,7 +53,7 @@ Content-Type: application/json
 GET  http://localhost:4503/cart/view/2
 
 ###user remove item from cart
-DELETE http://localhost:4503/cart/165624a5-167f-4e4a-bbce-fb500cbba2b9
+DELETE http://localhost:4503/cart/3190e15c-926a-4323-8598-af9a4648a682
 Content-Type: application/json
 
 
@@ -70,22 +70,23 @@ POST http://localhost:4503/users/register
 Content-Type: application/json
 
 {
-    "UserName": "Kevin Mathenge",
-    "Email": "kevinmathenge17@gmail.com",
+    "UserName": "Michael Wainaina",
+    "Email": "selesterat@gmail.com",
     "Password": "12345678",
     "PhoneNumber": "254721000000"
 
 }
 ### get user details
-GET http://localhost:4503/users/1d5337a1-08b0-4f0e-9f5e-e0f36e0351e2
+GET http://localhost:4503/users/a64e1e14-2c6a-4feb-b4cc-3e2559d39751
 
 ### Login user
 POST http://localhost:4503/users/login
 Content-Type: application/json
 
 {
-  "Email": "kevinmathenge17@gmail.com",
-  "Password": "Garfield"
+  "Email": "selesterat@gmail.com",
+  "Password": "12345678"
+
 
 }
 

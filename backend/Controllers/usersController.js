@@ -4,10 +4,12 @@ const bcrypt = require('bcrypt')
 const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken')
 const {sendMail} = require("../Database/helpers/email");
+const { createUsersTable } = require('../Database/Tables/createTables');
 dotenv.config()
 
 const registerUser = async (req, res) => {
     try {
+        createUsersTable()
         const UserID = v4();
         const {UserName, Email, Password, PhoneNumber, isAdmin} = req.body
         const existingUser = await DB.exec('CheckIfUserExistsProcedure', {Email})
@@ -58,9 +60,9 @@ const registerUser = async (req, res) => {
 
 
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         return res.status(500).json({
-            error: error.message,
+            error: "The mobile number you have entered is in use by a current member"
         });
     }
 }
