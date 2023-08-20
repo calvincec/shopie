@@ -16,7 +16,7 @@ const registerUser = async (req, res) => {
 
         if (existingUser.recordset.length > 0) {
             return res.status(409).json({
-                message: "An account with this email exists. Please sign in instead"
+                error: "An account with this email exists. Please sign in instead"
             })
         }
         const hashedPassword = await bcrypt.hash(Password, 10)
@@ -54,7 +54,7 @@ const registerUser = async (req, res) => {
                 message: `Account succesfully created.`
             })
         } else {
-            return res.status(500).json({message: 'Registration failed'});
+            return res.status(500).json({error: 'Registration failed'});
 
         }
 
@@ -94,7 +94,7 @@ const loginUser = async (req, res) => {
 
         if (user.recordset.length === 0) {
             return res.status(404).json({
-                message: 'Could not find an account associated with the email address',
+                error: 'Could not find an account associated with the email address',
             });
         }
 

@@ -2,7 +2,6 @@ const alternateTextElement = document.getElementById("alternateText");
 const alternateTexts = ["Welcome to Shoppie!", "Free delivery", "Genuine Products"];
 const userInputForm = document.getElementById('input-form')
 const messageElement = document.getElementById('message-element')
-const loginButton = document.getElementById('login-button')
 
 
 
@@ -54,8 +53,7 @@ userInputForm.addEventListener('submit', async (event) => {
         }
         else {
             const error = await  response.json()
-            const errorMessage = error.message
-            messageElement.innerText = errorMessage
+            messageElement.innerText = error.error
         }
     } catch (e) {
         console.log(e)
