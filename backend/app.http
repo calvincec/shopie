@@ -63,8 +63,6 @@ Content-Type: application/json
 
 
 
-
-
 ###USERS CONTROLLERS
 
 ### Register user
@@ -76,6 +74,7 @@ Content-Type: application/json
     "Email": "selester@gmail.com",
     "Password": "12345678",
     "PhoneNumber": "254722000004"
+
 
 }
 ### get user details
@@ -92,4 +91,6 @@ Content-Type: application/json
 
 }
 
+### Get all customers
+GET http://localhost:4503/users/customers/get-all-customers
 
