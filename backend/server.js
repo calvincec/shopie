@@ -1,18 +1,23 @@
-const express = require ('express');
-const { productsRouter, cartRouter } = require('./Routes/productsRoutes');
+const express = require('express');
+const cors = require('cors');
+const { connectToPool } = require('./Config/config');
+const { userRouter } = require('./Routes/usersRoutes');
 
+const app = express();
+const port = 4503;
 
-const app = express()
+app.use(cors());
 
-app.use(express.json())
-app.use('/product',productsRouter)
-app.use('/cart', cartRouter)
+app.use(express.json());
 
+app.use('/users', userRouter);
 
-app.use((err, req, res, next)=>{ 
-    res.json({Error: err})
-})
-
-app.listen(4503, ()=>{
-    console.log('Server running on port 4503');
-})
+connectToPool()
+	.then(() => {
+		app.listen(port, () => {
+			console.log(`Server started on port ${port}`);
+		});
+	})
+	.catch(error => {
+		console.error('Error connecting to the database:', error);
+	});
