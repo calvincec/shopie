@@ -3,5 +3,5 @@ AS
 BEGIN
     SELECT *
     FROM Users
-    WHERE isAdmin IS NULL;
+    WHERE isAdmin = 0;
 END;

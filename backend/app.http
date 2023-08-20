@@ -73,7 +73,8 @@ Content-Type: application/json
     "UserName": "Selly Wainaina",
     "Email": "selester@gmail.com",
     "Password": "12345678",
-    "PhoneNumber": "254722000004"
+    "PhoneNumber": "254722000005",
+    "isAdmin": 0
 
 
 }

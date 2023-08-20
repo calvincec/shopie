@@ -14,5 +14,5 @@ CREATE TABLE Users
 
 
 
-SELECT * FROM Users WHERE isAdmin IS null;
+SELECT * FROM Users;
 

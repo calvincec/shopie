@@ -33,11 +33,14 @@ loginForm.addEventListener('submit', async (event) => {
         })
         
         if(response.ok){
-            const data = await response.json()
-            console.log(data)
-            console.log(data.token)
             messageElement.style.color = 'green'
             messageElement.innerText = "Log in Successful"
+            const data = await response.json()
+            localStorage.setItem("authToken", data.token)
+
+            const decodedToken = parseJwt(data.token)
+
+            console.log(decodedToken.Role)
         }
 
         else {
@@ -51,6 +54,26 @@ loginForm.addEventListener('submit', async (event) => {
     }
     
 })
+
+function parseJwt(token) {
+    try {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const payload = decodeURIComponent(
+            atob(base64)
+                .split('')
+                .map(c => {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                })
+                .join(''),
+        );
+
+        return JSON.parse(payload);
+    } catch (error) {
+        console.error('Error parsing JWT token:', error);
+        return null;
+    }
+}
 
 
 function updateAlternateText() {

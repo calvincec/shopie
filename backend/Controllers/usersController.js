@@ -60,7 +60,7 @@ const registerUser = async (req, res) => {
 
 
     } catch (error) {
-        // console.log(error);
+         console.log(error);
         return res.status(500).json({
             error: "The mobile number you have entered is in use by a current member"
         });
@@ -106,7 +106,7 @@ const loginUser = async (req, res) => {
                 UserID: user.recordset[0]?.UserID,
                 UserName: user.recordset[0]?.UserName,
                 PhoneNumber: user.recordset[0].PhoneNumber,
-                Role: user.recordset[0]?.isAdmin === 1 ? 'admin' : 'user',
+                Role: user.recordset[0]?.isAdmin === true ? 'admin' : 'user',
                 Email: user.recordset[0].Email
             }
             const token = jwt.sign(payload, process.env.SECRET, {expiresIn: '36000'});
