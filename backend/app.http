@@ -4,11 +4,11 @@ POST http://localhost:4503/product
 Content-Type: application/json
 
 {
-    "productName": "five pac",
+    "productName": "Xiaomi",
     "productDescription": "five pac",
     "price": 500000000,
-    "productImage": "https://www.pac.com",
-    "stock": 9
+    "productImage": "https://ke.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/96/097216/1.jpg?7904",
+    "stock": 10
 }
 
 

@@ -4,13 +4,13 @@ const validateRegistration = (req, res, next) => {
 
     if (!UserName || !Email || !PhoneNumber || !Password) {
         return res.status(400).json({
-            message: "Please ensure all fields are filled."
+            error: "Please ensure all fields are filled."
         })
     }
 
     if (!validateEmailFormat(Email)) {
         return res.status(400).json({
-            message: "Invalid email format"
+            error: "Invalid email format"
         })
     }
 
@@ -22,13 +22,13 @@ const validateLogin = (req, res, next) => {
     const {Email, Password} = req.body
     if(!Email||!Password){
         return res.status(400).json({
-            message: "Please ensure all fields are filled"
+            error: "Please ensure all fields are filled"
         })
     }
 
     if(!validateEmailFormat(Email)){
         return  res.status(400).json({
-            message: "Invalid email format"
+            error: "Invalid email format"
         })
     }
 
@@ -42,7 +42,7 @@ const validateResetPassword = (req, res, next) => {
 
     if(!validateEmailFormat(Email)){
         return res.status(400).json({
-            message: "Invalid email format"
+            error: "Invalid email format"
         })
     }
 }

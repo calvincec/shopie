@@ -60,10 +60,17 @@ const registerUser = async (req, res) => {
 
 
     } catch (error) {
-         console.log(error);
+         console.log(error.message);
+        if(error.message.includes(" Cannot insert duplicate key in object 'dbo.Users'")){
+            return res.status(500).json({
+                error: "The mobile number you have entered is in use by a current member"
+            });
+        }
+
         return res.status(500).json({
-            error: "The mobile number you have entered is in use by a current member"
+            error: 'An error occurred during registration.'
         });
+
     }
 }
 
