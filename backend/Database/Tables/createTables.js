@@ -81,7 +81,7 @@ const createcartTable = async(req, res)=>{
         TRY
             CREATE TABLE cart(
                 cartId VARCHAR(200) PRIMARY KEY,
-                UserID VARCHAR(200) NOT NULL,
+                UserID NVARCHAR(255) NOT NULL,
                 productId VARCHAR(200) NOT NULL,
                 FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE ON UPDATE CASCADE,
                 FOREIGN KEY (productId) REFERENCES products(productId) ON DELETE CASCADE ON UPDATE CASCADE 

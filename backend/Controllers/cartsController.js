@@ -9,7 +9,7 @@ const addToCart = async (req,res)=>{
     try {
         createcartTable()
         const cartId = v4()
-        const UserID = req.params.userId
+        const UserID = req.params.UserID
         const {productId} = req.body
 
         const pool = await mssql.connect(sqlConfig)
@@ -28,7 +28,8 @@ const addToCart = async (req,res)=>{
         } 
         
     } catch (error) {
-        return res.status(400).json({Error: error})
+        // return res.status(400).json({Error: error})
+        return res.status(400).json({Error: "The product does not exist in our records"})
     }
 }
 
