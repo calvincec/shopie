@@ -4,11 +4,11 @@ POST http://localhost:4503/product
 Content-Type: application/json
 
 {
-    "productName": "School bag",
+    "productName": "TEST bag",
     "productDescription": "to carry books",
     "price": 400000000,
     "productImage": "https://www.bag.com",
-    "stock": 4543
+    "stock": 0.67
 }
 
 
@@ -45,7 +45,7 @@ POST http://localhost:4503/cart/1
 Content-Type: application/json
 
 {
-    "productId": "9b017ff6-c425-4298-9c0a-efea9e18ff74"
+    "productId": "0d8308be-3d3d-4f2f-ae30-ba24f302935a"
 }
 
 
@@ -53,7 +53,7 @@ Content-Type: application/json
 GET  http://localhost:4503/cart/view/2
 
 ###user remove item from cart
-DELETE http://localhost:4503/cart/165624a5-167f-4e4a-bbce-fb500cbba2b9
+DELETE http://localhost:4503/cart/3190e15c-926a-4323-8598-af9a4648a682
 Content-Type: application/json
 
 
