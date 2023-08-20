@@ -89,6 +89,7 @@
 
   .input {
     margin-bottom: 10px;
+    display: flex;
   }
   
   .input input {
@@ -96,28 +97,18 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
+ height: 30px;
+    padding: 20px;
   }
   
 
-  .confirm {
+
+  .sbt{
     display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+    justify-content: space-between;
   }
-  
-  .accept {
-    font-size: 12px;
-    margin-left: 5px;
-  }
-  
-  .accept span {
-    color: #007bff;
-    cursor: pointer;
-  }
-  .accept span:hover{
-    color: #3414eb;
-  }
-  
+
+
 
   .sbt input {
     background-color: #007bff;

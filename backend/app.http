@@ -4,10 +4,10 @@ POST http://localhost:4503/product
 Content-Type: application/json
 
 {
-    "productName": "pen pen",
-    "productDescription": "fwen fwen",
-    "price": 200000000,
-    "productImage": "https://www.fwen.com",
+    "productName": "five pac",
+    "productDescription": "five pac",
+    "price": 500000000,
+    "productImage": "https://www.pac.com",
     "stock": 9
 }
 
@@ -17,11 +17,11 @@ GET http://localhost:4503/product/all
 Content-Type: application/json
 
 ###Get one product
-GET http://localhost:4503/product/one/766ae5b3-833a-4dba-9107-9ec36dc9cb14
+GET http://localhost:4503/product/one/5efdf8d9-301f-418c-9bec-7560b853c28e
 
 
 ###Update product
-PUT http://localhost:4503/product/766ae5b3-833a-4dba-9107-9ec36dc9cb14
+PUT http://localhost:4503/product/5efdf8d9-301f-418c-9bec-7560b853c28e
 Content-Type: application/json
 
 
@@ -34,26 +34,26 @@ Content-Type: application/json
 }
 
 ###Delete product
-DELETE http://localhost:4503/product/766ae5b3-833a-4dba-9107-9ec36dc9cb14
+DELETE http://localhost:4503/product/5efdf8d9-301f-418c-9bec-7560b853c28e
 
 
 
 ### MANAGE CART
 
 ###add to cart
-POST http://localhost:4503/cart/1
+POST http://localhost:4503/cart/48886de7-3ef7-4bbc-ad2c-8d01298340ea
 Content-Type: application/json
 
 {
-    "productId": "0d8308be-3d3d-4f2f-ae30-ba24f302935a"
+    "productId": "c5db4628-6096-4b2e-a50f-1691d33e25be"
 }
 
 
 ###user view all products in cart
-GET  http://localhost:4503/cart/view/2
+GET  http://localhost:4503/cart/view/48886de7-3ef7-4bbc-ad2c-8d01298340ea 
 
 ###user remove item from cart
-DELETE http://localhost:4503/cart/3190e15c-926a-4323-8598-af9a4648a682
+DELETE http://localhost:4503/cart/ffa9341a-a42f-4ef5-9d9b-32dfc7c30ddb
 Content-Type: application/json
 
 
@@ -70,14 +70,15 @@ POST http://localhost:4503/users/register
 Content-Type: application/json
 
 {
-    "UserName": "Michael Wainaina",
-    "Email": "selesterat@gmail.com",
+    "UserName": "Selly Wainaina",
+    "Email": "selester@gmail.com",
     "Password": "12345678",
-    "PhoneNumber": "254721000000"
+    "PhoneNumber": "254722000004"
+
 
 }
 ### get user details
-GET http://localhost:4503/users/a64e1e14-2c6a-4feb-b4cc-3e2559d39751
+GET http://localhost:4503/users/6e358199-6653-4351-9d27-1136d398aa48
 
 ### Login user
 POST http://localhost:4503/users/login
