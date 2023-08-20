@@ -30,33 +30,33 @@
             <p>Create your account. It's free and only takes a minute</p>
         </div>
     
-        <form class="form" action="">
+        <form class="form" id="input-form" action="">
             <div class="inputs">
                 <div class="input" style="display: flex;justify-content: space-between;">
-                    <input type="text" name="fullname" id="fullname" placeholder="Full Name">
-                    <!-- <input type="text" name="lastname" id="lastname" placeholder="Last Name"> -->
+                    <label for="fullname"></label><input type="text" name="fullname" id="fullname" placeholder="Full Name">
+                  
                 </div>
                 <div class="input">
-                    
-                    <input type="email" name="email" id="email" placeholder="Email">
+
+                    <label for="email"></label><input type="email" name="email" id="email" placeholder="Email">
                 </div>
                 <div class="input">
-                    <input type="number" name="" id="phone-number" placeholder="254720212223">
+                    <label for="phone-number"></label><input type="number" name="" id="phone-number" placeholder="254720212223">
                 </div>
                 <div class="input">
-                    <input type="password" name="pwd" id="password" placeholder="Password">
+                    <label for="password"></label><input type="password" name="pwd" id="password" placeholder="Password">
                 </div>
                 <div class="input">
-                    <input type="password" name="pwdc" id="confirm-password" placeholder="Confirm Password">
+                    <label for="confirm-password"></label><input type="password" name="pwdc" id="confirm-password" placeholder="Confirm Password">
                 </div>
             </div>
-            <div class="errormessage">
+            <div class="errormessage" id="message-element">
                
             </div>
       
             <div class="sbt">
-                <input   type="button" value="Register Now">
-                <input  type="button" value="Login instead">
+                <input   type="submit" value="Register Now">
+                <input  type="button" id="login-button"  onclick="window.location.href='login.html'" value="Login instead">
             </div>
         </form>
         
