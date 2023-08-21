@@ -17,11 +17,11 @@ GET http://localhost:4503/product/all
 Content-Type: application/json
 
 ###Get one product
-GET http://localhost:4503/product/one/5efdf8d9-301f-418c-9bec-7560b853c28e
+GET http://localhost:4503/product/one/c5db4628-6096-4b2e-a50f-1691d33e25be
 
 
 ###Update product
-PUT http://localhost:4503/product/5efdf8d9-301f-418c-9bec-7560b853c28e
+PUT http://localhost:4503/product/60a15ccc-9eda-4720-a0c3-16ff9d0fd9e8
 Content-Type: application/json
 
 
@@ -29,12 +29,12 @@ Content-Type: application/json
     "productName": "Steel door",
     "productDescription": "To prevent thieves",
     "price": 400000000,
-    "productImage": "https://www.door.com",
+    "productImage": "https://images.pexels.com/photos/7054511/pexels-photo-7054511.jpeg?auto=compress&cs=tinysrgb&w=600",
     "stock": 4543
 }
 
 ###Delete product
-DELETE http://localhost:4503/product/5efdf8d9-301f-418c-9bec-7560b853c28e
+DELETE http://localhost:4503/product/c5db4628-6096-4b2e-a50f-1691d33e25be
 
 
 
