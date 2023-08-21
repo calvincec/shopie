@@ -1,6 +1,6 @@
 const alternateTextElement = document.getElementById("alternateText");
 const alternateTexts = ["Welcome to Shoppie!", "Free delivery", "Genuine Products"];
-const errorElement = document.getElementById('no-products-found')
+const errorElement = document.getElementById('no-products-found');
 let currentAlternateTextIndex = 0;
 
 function updateAlternateText() {
@@ -10,14 +10,8 @@ function updateAlternateText() {
 
 updateAlternateText();
 setInterval(updateAlternateText, 3000);
-const products = [];
-for (let i = 1; i <= 25; i++) {
-    products.push({
-        name: `Product ${i}`,
-        price: `Ksh.${(Math.random() * 100000).toFixed(2)}`,
-        image: "https://ke.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/96/097216/1.jpg?7904"
-    });
-}
+
+let products = [];
 
 const productContainer = document.getElementById("productContainer");
 const searchInput = document.getElementById("search");
@@ -31,34 +25,57 @@ function generateProductCards(productsToDisplay) {
         card.classList.add("product-card");
 
         const productImage = document.createElement("img");
-        productImage.src = product.image;
+        productImage.src = product.productImage;
 
         const productName = document.createElement("h3");
-        productName.textContent = product.name;
+        productName.textContent = product.productName;
 
         const productPrice = document.createElement("p");
         productPrice.textContent = `Price: ${product.price}`;
 
+        const productDescription = document.createElement("p");
+        productDescription.textContent = product.productDescription;
+
+        const productStock = document.createElement("p");
+        productStock.textContent = `Stock: ${product.stock}`;
+
         card.appendChild(productImage);
         card.appendChild(productName);
         card.appendChild(productPrice);
+        card.appendChild(productDescription);
+        card.appendChild(productStock);
 
         productContainer.appendChild(card);
     });
 }
+
+async function fetchProducts() {
+    try {
+        const response = await fetch("http://localhost:4503/product/all");
+        const data = await response.json();
+        return data.products;
+    } catch (error) {
+        console.error("Error fetching products:", error);
+        return [];
+    }
+}
+
+async function updateProductCards() {
+    products = await fetchProducts(); // Update the global 'products' array with fetched data
+    generateProductCards(products);
+}
+
 searchInput.addEventListener('input', () => {
     const searchTerm = searchInput.value.toLowerCase();
-    const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchTerm));
-
+    const filteredProducts = products.filter(product => product.productName.toLowerCase().includes(searchTerm));
 
     generateProductCards(filteredProducts);
 
-    if (filteredProducts < 1) {
-            errorElement.innerHTML = "No product(s) found"
+    if (filteredProducts.length < 1) {
+        errorElement.innerHTML = "No product(s) found";
+    } else {
+        errorElement.innerHTML = "";
     }
-    else {
-        errorElement.innerHTML = ""
-    }
-})
+});
 
-generateProductCards(products);
+updateProductCards();

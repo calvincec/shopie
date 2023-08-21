@@ -70,13 +70,10 @@
     margin: 10px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: calc(25% - 20px); /* Distribute in 4 columns with margin */
-    display: inline-block;
-    vertical-align: top;
+    width: calc(16.666% - 20px);
     box-sizing: border-box;
     text-align: center;
 }
-
 .product-card img {
     max-width: 100%;
     height: auto;
@@ -92,17 +89,7 @@
     
 }
 
-.product-card {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px; 
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: calc(16.666% - 20px); 
-    box-sizing: border-box;
-    text-align: center;
-}
+
 
 /* Media Queries */
 @media (max-width: 768px) {
