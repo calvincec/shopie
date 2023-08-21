@@ -45,7 +45,8 @@ POST http://localhost:4503/cart/b090b4ae-382c-486c-a598-ae7dff428a9b
 Content-Type: application/json
 
 {
-    "productId": "5e1a932e-2ef7-4b5a-aa6c-24fbc91c4e7d"
+    "productId": "c5db4628-6096-4b2e-a50f-1691d33e25be",
+    "orderNo": 3
 }
 
 
@@ -70,8 +71,8 @@ POST http://localhost:4503/users/register
 Content-Type: application/json
 
 {
-    "UserName": "Selly Wainaina",
-    "Email": "selester1@gmail.com",
+    "UserName": "Calvince Ndemo",
+    "Email": "calyndemo16@gmail.com",
     "Password": "12345678",
     "PhoneNumber": "254722080005",
     "isAdmin": 1
@@ -86,7 +87,7 @@ POST http://localhost:4503/users/login
 Content-Type: application/json
 
 {
-  "Email": "selesterat@gmail.com",
+  "Email": "calyndemo16@gmail.com",
   "Password": "12345678"
 
 
