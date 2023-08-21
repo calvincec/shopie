@@ -146,7 +146,7 @@ const initiatePasswordReset = async (req, res) => {
                 error: "No account under that email exists"
             });
         } else {
-            // Generate a unique reset token
+
             const resetToken = v4();
 
             const result = await DB.exec('StoreResetTokenProcedure', {Email, ResetToken: resetToken});
