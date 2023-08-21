@@ -6,7 +6,7 @@ const { sqlConfig } = require("../Config/config")
 
 const newProduct = async (req, res)=>{
     try {
-        createProductsTable()
+        // createProductsTable()
         const productId = v4()
         const {productName, productDescription, price, productImage,stock} = req.body
         const pool = await mssql.connect(sqlConfig)
