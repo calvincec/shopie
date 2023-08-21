@@ -41,6 +41,9 @@ loginForm.addEventListener('submit', async (event) => {
             const decodedToken = parseJwt(data.token)
 
             console.log(decodedToken.Role)
+
+                window.location.href = "/Frontend/dashboard/dashboard.html"
+
         }
 
         else {
