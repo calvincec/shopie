@@ -50,7 +50,7 @@ userInputForm.addEventListener('submit', async (event) => {
         if (response.ok){
             messageElement.innerText = "Acccount created successfully"
             messageElement.style.color = 'green'
-            window.location.href = 'login.html'
+            window.location.href = '/Frontend/login/login.html'
         }
         else {
             const error = await  response.json()

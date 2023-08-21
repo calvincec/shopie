@@ -4,11 +4,11 @@ POST http://localhost:4503/product
 Content-Type: application/json
 
 {
-    "productName": "Xiaomi",
+    "productName": "jhvjjhvhvk",
     "productDescription": "five pac",
     "price": 500000000,
     "productImage": "https://ke.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/96/097216/1.jpg?7904",
-    "stock": 10
+    "stock": 0
 }
 
 
@@ -41,19 +41,19 @@ DELETE http://localhost:4503/product/c5db4628-6096-4b2e-a50f-1691d33e25be
 ### MANAGE CART
 
 ###add to cart
-POST http://localhost:4503/cart/48886de7-3ef7-4bbc-ad2c-8d01298340ea
+POST http://localhost:4503/cart/b090b4ae-382c-486c-a598-ae7dff428a9b
 Content-Type: application/json
 
 {
-    "productId": "c5db4628-6096-4b2e-a50f-1691d33e25be"
+    "productId": "5e1a932e-2ef7-4b5a-aa6c-24fbc91c4e7d"
 }
 
 
 ###user view all products in cart
-GET  http://localhost:4503/cart/view/48886de7-3ef7-4bbc-ad2c-8d01298340ea 
+GET  http://localhost:4503/cart/view/b090b4ae-382c-486c-a598-ae7dff428a9b 
 
 ###user remove item from cart
-DELETE http://localhost:4503/cart/ffa9341a-a42f-4ef5-9d9b-32dfc7c30ddb
+DELETE http://localhost:4503/cart/722e4d88-b2e8-4cc3-b8c8-6b1ad7433bd1
 Content-Type: application/json
 
 

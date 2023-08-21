@@ -93,7 +93,43 @@
     margin-right: 10px;
     
 }
-
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    display: flex;
+    flex-direction: column;
+  
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    
+    .dropdown a:hover {background-color: #007bff;}
+    
+    .show {display: block;}
+  
+    .dropdown:hover{
+      cursor: pointer;
+    }
+  #person:hover {
+    cursor: pointer;
+  }
+  #shopping-cart:hover {
+    cursor: pointer;
+  }
 
 .add-to-cart{
     padding: 10px;

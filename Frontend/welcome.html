@@ -7,37 +7,65 @@
     <link rel="stylesheet" href="welcome.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <title>Shopie</title>
 </head>
 
 <body>
-    <div class="top-nav">
-        <div class="alternating-menu">
-            <p id="alternateText">Welcome to Shoppie</p>
+  
+        <div class="top-nav">
+            <div class="alternating-menu">
+                <p id="alternateText">Welcome to Shoppie</p>
+            </div>
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Search...">
+                <button type="button" id="search-button">Search Products</button>
+            </div>
+            <div class="menus">
+                <div class="dropdown">
+                    <span class="material-symbols-outlined clickable">person</span>
+                    <div class="dropdown-content">
+                        <a id="user-login" >Login</a>
+                        <a id="user-register" >Register</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="search-container">
-            <input type="text" id="search" placeholder="Search...">
-            <button type="button" id="search-button">Search Products</button>
+
+
+        <div class="product-container" id="productContainer">
+            <!-- Product cards will be dynamically generated here -->
         </div>
-        <div class="menus">
-            <span class="material-symbols-outlined">person</span>
-            <span class="material-symbols-outlined">shopping_cart</span>
+
+        <div id="no-products-found">
+
         </div>
-    </div>
 
 
-    <div class="product-container" id="productContainer">
-        <!-- Product cards will be dynamically generated here -->
-    </div>
+        <script>
 
-    <div id="no-products-found"></div>
+            document.addEventListener("DOMContentLoaded", function () {
+                $(".dropdown").click(function (event) {
+                    event.stopPropagation();
+                    $(this).find(".dropdown-content").toggle();
+                });
+
+                // Hide the dropdown content on DOM content load
+                $(".dropdown-content").hide();
+
+                $(document).click(function (event) {
+                    if (!$(event.target).closest(".dropdown").length) {
+                        $(".dropdown-content").hide();
+                    }
+                });
+            });
 
 
+        </script>
 
-<div class="cart">
-        <p>Cart Items: <span class="cart-count">0</span></p>
-    </div>
-
+        <script src="/Frontend/customer-dashboard/customer-dashboard.js"></script>
+    
 
 
     <script src="welcome.js"></script>
