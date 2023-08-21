@@ -11,3 +11,8 @@ CREATE TABLE Users
     ResetToken  NVARCHAR(255),
     isAdmin     BIT DEFAULT 0
 )
+
+
+
+SELECT * FROM Users;
+
