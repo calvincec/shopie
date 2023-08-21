@@ -241,7 +241,7 @@ const getAllCustomers = async (req, res) => {
     try {
 
         const users = await DB.exec("GetAllCustomersProcedure")
-        console.log(users)
+        
         if (users.recordset.length > 0) {
             return res.status(200).json(users.recordset)
         } else {
