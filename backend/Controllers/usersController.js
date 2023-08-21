@@ -193,7 +193,7 @@ const resetPassword = async (req, res) => {
         const result = await DB.exec('ResetPasswordProcedure', {Token, NewPassword: hashedPassword});
 
         const user = await DB.exec("GetUserByResetTokenProcedure", {Token});
-        console.log(user.recordset)
+
 
 
         const userMessageOptions = {

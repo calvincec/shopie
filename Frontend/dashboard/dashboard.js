@@ -4,9 +4,16 @@ const adminUI = document.getElementById('admin-ui');
 const customerUI = document.getElementById('user-ui')
 const greetingsElement = document.getElementById("helloAdminMessage")
 const customerGreetings = document.getElementById('helloCustomerMessage')
+
+const userLogoutButton = document.getElementById('user-logout')
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const decodedToken = parseJwt(token)
+   let  userId = decodedToken.UserID
+    console.log(userId);
     console.log(decodedToken);
     if (!token) {
         window.location.href = '/Frontend/login/login.html'
@@ -32,6 +39,14 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 
+userLogoutButton.addEventListener('click', () => {
+    logout()
+})
+function logout(){
+
+    localStorage.clear()
+    window.location.href = "/Frontend/welcome.html"
+}
 
 function parseJwt(token) {
     try {
