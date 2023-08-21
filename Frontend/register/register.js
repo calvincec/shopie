@@ -2,11 +2,16 @@ const alternateTextElement = document.getElementById("alternateText");
 const alternateTexts = ["Welcome to Shoppie!", "Free delivery", "Genuine Products"];
 const userInputForm = document.getElementById('input-form')
 const messageElement = document.getElementById('message-element')
+const loginbutton = document.querySelector('#login-button')
 
 
 
 let currentAlternateTextIndex = 0;
 
+loginbutton.addEventListener('click', async(e)=>{
+    e.preventDefault()
+    window.location.href = '/Frontend/login/login.html'
+})
 
 
 userInputForm.addEventListener('submit', async (event) => {
@@ -50,7 +55,7 @@ userInputForm.addEventListener('submit', async (event) => {
         if (response.ok){
             messageElement.innerText = "Acccount created successfully"
             messageElement.style.color = 'green'
-            window.location.href = 'login.html'
+            window.location.href = '/Frontend/login/login.html'
         }
         else {
             const error = await  response.json()
