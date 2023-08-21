@@ -39,6 +39,7 @@
 #search-button:hover {
     background-color: #0056b3;
 }
+
 .alternating-menu{
     width: 18.00%;
 }
@@ -63,6 +64,8 @@
 .material-symbols-outlined {
     color: white;
  }
+
+
 .product-card {
     border: 1px solid #ccc;
     border-radius: 5px;
