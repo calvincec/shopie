@@ -71,10 +71,10 @@ Content-Type: application/json
 
 {
     "UserName": "Selly Wainaina",
-    "Email": "selester@gmail.com",
+    "Email": "selester1@gmail.com",
     "Password": "12345678",
-    "PhoneNumber": "254722000005",
-    "isAdmin": 0
+    "PhoneNumber": "254722080005",
+    "isAdmin": 1
 
 
 }
