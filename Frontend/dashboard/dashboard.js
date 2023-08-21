@@ -1,0 +1,54 @@
+const token = localStorage.getItem("authToken")
+const userJsonString = localStorage.getItem('user');
+const adminUI = document.getElementById('admin-ui');
+const customerUI = document.getElementById('user-ui')
+const greetingsElement = document.getElementById("helloAdminMessage")
+const customerGreetings = document.getElementById('helloCustomerMessage')
+document.addEventListener("DOMContentLoaded", () => {
+
+    const decodedToken = parseJwt(token)
+    console.log(decodedToken);
+    if (!token) {
+        window.location.href = '/Frontend/login/login.html'
+    } else {
+        if (decodedToken.Role === "user") {
+            customerUI.style.display = "block"
+            adminUI.style.display = "none"
+            adminUI.style.visibility = "hidden"
+
+        } else {
+            adminUI.style.display = "block"
+            customerUI.style.display = "none"
+            customerUI.style.visibility = "hidden"
+        }
+
+
+        greetingsElement.innerHTML = `Hello, <br> ${decodedToken.UserName}`
+        customerGreetings.innerHTML = `Hello, <br> ${decodedToken.UserName}`
+
+        greetingsElement.style.fontSize = '14px'
+        customerGreetings.style.fontSize = '14px'
+    }
+})
+
+
+
+function parseJwt(token) {
+    try {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const payload = decodeURIComponent(
+            atob(base64)
+                .split('')
+                .map(c => {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                })
+                .join(''),
+        );
+
+        return JSON.parse(payload);
+    } catch (error) {
+        console.error('Error parsing JWT token:', error);
+        return null;
+    }
+}
