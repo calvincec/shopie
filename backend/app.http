@@ -4,11 +4,11 @@ POST http://localhost:4503/product
 Content-Type: application/json
 
 {
-    "productName": "jhvjjhvhvk",
-    "productDescription": "five pac",
-    "price": 500000000,
-    "productImage": "https://ke.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/96/097216/1.jpg?7904",
-    "stock": 0
+    "productName": "Classic Business Quartz Wrist Watch",
+    "productDescription": "Fashion Mens Casual Classic Business Quartz Calendar Wrist Watches Men",
+    "price": 95499,
+    "productImage": "https://ke.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/59/0416001/1.jpg?1735",
+    "stock": 65
 }
 
 

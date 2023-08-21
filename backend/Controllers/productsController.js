@@ -38,9 +38,14 @@ const getAllProducts = async (req, res)=>{
         const result = await pool.request()
         .execute('getAllProjectsProc')
 
-        return res.status(200).json({ products: result.recordset})  
-        
+        if(result.recordset.length<1){
+            return res.status(404).json({message: "No products in the system."})
+        }
+        else {
+            return res.status(200).json({products: result.recordset})
+        }
     } catch (error) {
+        console.log(error)
         return res.status(500).json({Error: "Error in our server, contact the admin to resolve the issue"})
     }
 }

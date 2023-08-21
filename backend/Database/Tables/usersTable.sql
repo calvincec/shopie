@@ -14,5 +14,9 @@ CREATE TABLE Users
 
 
 
+
 SELECT * FROM Users;
 
+create database shopie;
+
+use shopie;
