@@ -6,3 +6,4 @@ BEGIN
     JOIN products p ON p.productId = c.productId
     WHERE c.UserID = @UserID
 END
+
