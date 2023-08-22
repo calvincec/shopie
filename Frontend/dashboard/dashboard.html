@@ -31,7 +31,7 @@
                         <a id="user-logout" onclick="logout()">Logout</a>
                     </div>
                 </div>
-                <span class="material-symbols-outlined clickable" id="shopping-cart">shopping_cart</span>
+                <span class="material-symbols-outlined clickable" onclick="window.location.href ='/Frontend/cart/cart.html' " id="shopping-cart">shopping_cart</span>
                 <p id="helloCustomerMessage"></p>
             </div>
         </div>
@@ -44,7 +44,48 @@
         <div id="no-products-found">
 
         </div>
+        <div id="admin-ui" style="display: none;">
+            <style>
+                #add-products {
+                    padding: 10px 20px;
+                    background-color: white;
+                    border: none;
+                    border-radius: 5px;
+                    color: black;
+                    font-size: 16px;
+                    cursor: pointer;
+                    margin-left: 20px;
+                }
+    
+                #add-products:hover {
+                    background-color: #0056b3;
+                }
+            </style>
+            <div class="top-nav">
+                <div class="alternating-menu">
+                    <p id="alternateText">Welcome to Shoppie</p>
+                </div>
+                <div class="search-container">
+                    <input type="text" id="search" placeholder="Search...">
+                    <button type="button" id="search-button">Search Products</button>
+                    <button type="button" id="add-products">Add Product</button>
+                </div>
+                <div class="menus">
+                    <div class="dropdown">
+                        <span class="material-symbols-outlined clickable">person</span>
+                        <div class="dropdown-content">
+                           
+                            <a href="#">Logout</a>
+                        </div>
+                    </div>
+    
+                    <p style="color: white;" id="helloAdminMessage"></p>
+                </div>
+            </div>
+    
+        </div>
 
+        <script src="dashboard.js"></script>
 
         <script>
 
@@ -70,50 +111,11 @@
         <script src="/Frontend/customer-dashboard/customer-dashboard.js"></script>
     </div>
 
-    <div id="admin-ui" style="display: none;">
-        <style>
-            #add-products {
-                padding: 10px 20px;
-                background-color: white;
-                border: none;
-                border-radius: 5px;
-                color: black;
-                font-size: 16px;
-                cursor: pointer;
-                margin-left: 20px;
-            }
-
-            #add-products:hover {
-                background-color: #0056b3;
-            }
-        </style>
-        <div class="top-nav">
-            <div class="alternating-menu">
-                <p id="alternateText">Welcome to Shoppie</p>
-            </div>
-            <div class="search-container">
-                <input type="text" id="search" placeholder="Search...">
-                <button type="button" id="search-button">Search Products</button>
-                <button type="button" id="add-products">Add Product</button>
-            </div>
-            <div class="menus">
-                <div class="dropdown">
-                    <span class="material-symbols-outlined clickable">person</span>
-                    <div class="dropdown-content">
-                       
-                        <a href="#">Logout</a>
-                    </div>
-                </div>
-
-                <p style="color: white;" id="helloAdminMessage"></p>
-            </div>
-        </div>
-
-    </div>
+   
 
 
 
-    <script src="dashboard.js"></script>
+  
 </body>
 
 </html>

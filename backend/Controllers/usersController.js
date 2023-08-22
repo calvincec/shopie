@@ -1,9 +1,9 @@
-const {v4} = require('uuid');
-const {DB} = require('../Database/helpers');
+const { v4 } = require('uuid');
+const { DB } = require('../Database/helpers');
 const bcrypt = require('bcrypt')
 const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken')
-const {sendMail} = require("../Database/helpers/email");
+const { sendMail } = require("../Database/helpers/email");
 
 dotenv.config()
 
@@ -11,8 +11,8 @@ const registerUser = async (req, res) => {
     try {
 
         const UserID = v4();
-        const {UserName, Email, Password, PhoneNumber, isAdmin} = req.body
-        const existingUser = await DB.exec('CheckIfUserExistsProcedure', {Email})
+        const { UserName, Email, Password, PhoneNumber, isAdmin } = req.body
+        const existingUser = await DB.exec('CheckIfUserExistsProcedure', { Email })
 
         if (existingUser.recordset.length > 0) {
             return res.status(409).json({
@@ -54,14 +54,14 @@ const registerUser = async (req, res) => {
                 message: `Account succesfully created.`
             })
         } else {
-            return res.status(500).json({error: 'Registration failed'});
+            return res.status(500).json({ error: 'Registration failed' });
 
         }
 
 
     } catch (error) {
-         console.log(error.message);
-        if(error.message.includes(" Cannot insert duplicate key in object 'dbo.Users'")){
+        console.log(error.message);
+        if (error.message.includes(" Cannot insert duplicate key in object 'dbo.Users'")) {
             return res.status(500).json({
                 error: "The mobile number you have entered is in use by a current member"
             });
@@ -77,26 +77,26 @@ const registerUser = async (req, res) => {
 const getUserDetails = async (req, res) => {
     try {
 
-        const {userID} = req.params
+        const { userID } = req.params
 
-        const user = await DB.exec('GetUserDetailsProcedure', {UserID: userID})
+        const user = await DB.exec('GetUserDetailsProcedure', { UserID: userID })
         if (user.recordset.length === 0) {
-            return res.status(404).json({error: 'User not found'});
+            return res.status(404).json({ error: 'User not found' });
         }
 
         return res.status(200).json(user.recordset[0]);
 
     } catch (e) {
         console.log(e)
-        return res.status(500).json({error: e.message})
+        return res.status(500).json({ error: e.message })
     }
 }
 
 const loginUser = async (req, res) => {
     try {
 
-        const {Email, Password} = req.body
-        const user = await DB.exec("UserLoginProcedure", {Email})
+        const { Email, Password } = req.body
+        const user = await DB.exec("UserLoginProcedure", { Email })
 
 
         if (user.recordset.length === 0) {
@@ -116,7 +116,7 @@ const loginUser = async (req, res) => {
                 Role: user.recordset[0]?.isAdmin === true ? 'admin' : 'user',
                 Email: user.recordset[0].Email
             }
-            const token = jwt.sign(payload, process.env.SECRET, {expiresIn: '36000'});
+            const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '36000' });
 
             return res.status(200).json({
                 message: 'Login successful.',
@@ -138,9 +138,9 @@ const loginUser = async (req, res) => {
 }
 const initiatePasswordReset = async (req, res) => {
     try {
-        const {Email} = req.body;
+        const { Email } = req.body;
 
-        const user = await DB.exec("CheckIfUserExistsProcedure", {Email});
+        const user = await DB.exec("CheckIfUserExistsProcedure", { Email });
         if (user.recordset.length === 0) {
             return res.status(404).json({
                 error: "No account under that email exists"
@@ -149,7 +149,7 @@ const initiatePasswordReset = async (req, res) => {
 
             const resetToken = v4();
 
-            const result = await DB.exec('StoreResetTokenProcedure', {Email, ResetToken: resetToken});
+            const result = await DB.exec('StoreResetTokenProcedure', { Email, ResetToken: resetToken });
 
             if (result.returnValue === 0) {
                 const mailOptions = {
@@ -186,13 +186,13 @@ const initiatePasswordReset = async (req, res) => {
 
 const resetPassword = async (req, res) => {
     try {
-        const {Token, NewPassword} = req.body;
+        const { Token, NewPassword } = req.body;
 
 
         const hashedPassword = await bcrypt.hash(NewPassword, 10)
-        const result = await DB.exec('ResetPasswordProcedure', {Token, NewPassword: hashedPassword});
+        const result = await DB.exec('ResetPasswordProcedure', { Token, NewPassword: hashedPassword });
 
-        const user = await DB.exec("GetUserByResetTokenProcedure", {Token});
+        const user = await DB.exec("GetUserByResetTokenProcedure", { Token });
 
 
 
@@ -236,12 +236,11 @@ const resetPassword = async (req, res) => {
     }
 };
 
-
 const getAllCustomers = async (req, res) => {
     try {
 
         const users = await DB.exec("GetAllCustomersProcedure")
-        
+
         if (users.recordset.length > 0) {
             return res.status(200).json(users.recordset)
         } else {
@@ -255,11 +254,44 @@ const getAllCustomers = async (req, res) => {
 }
 
 
+const updateProfile = async (req, res) => {
+    try {
+        const { UserID } = req.params; // Get UserID from URL parameter
+        const { Email, PhoneNumber } = req.body; 
+
+        const result = await DB.exec('UpdateUserProcedure', {
+            UserID,
+            Email,
+            PhoneNumber
+        });
+
+        if (result.returnValue === 0) {
+            return res.status(200).json({
+                message: 'User information has been successfully updated.',
+            });
+        } else if (result.returnValue === 1) {
+            return res.status(404).json({
+                error: 'User not found.',
+            });
+        } else {
+            return res.status(500).json({
+                error: 'Failed to update user information.',
+            });
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            error: 'An error occurred while updating user information.',
+        });
+    }
+};
+
 module.exports = {
     registerUser,
     getUserDetails,
     loginUser,
     resetPassword,
     initiatePasswordReset,
-    getAllCustomers
+    getAllCustomers,
+    updateProfile
 }

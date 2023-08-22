@@ -13,6 +13,9 @@ CREATE TABLE Users
 )
 
 
+delete  from Users where Email is not null;
+
+
 
 
 SELECT * FROM Users;
@@ -20,3 +23,5 @@ SELECT * FROM Users;
 create database shopie;
 
 use shopie;
+
+select * from cart;
