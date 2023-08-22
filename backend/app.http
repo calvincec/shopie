@@ -46,12 +46,12 @@ Content-Type: application/json
 
 {
    "productId": "090a3e89-3dcb-4f87-a0e1-10c28849a49a",
-   "orderNo": 3
+   "orderNo": 2
 }
 
 
 ###user view all products in cart
-GET  http://localhost:4503/cart/view/8caf46b1-080b-4e46-b7d2-57780ea5684f
+GET  http://localhost:4503/cart/view/c1bba238-7240-4f11-9047-89cd68fccea4
 
 ###user remove item from cart
 DELETE http://localhost:4503/cart/722e4d88-b2e8-4cc3-b8c8-6b1ad7433bd1

@@ -4,6 +4,9 @@ const errorElement = document.getElementById('no-products-found');
 let cartItemCount = 0;
 let currentAlternateTextIndex = 0;
 
+const userToken = localStorage.getItem("authToken")
+
+
 function updateAlternateText() {
     alternateTextElement.textContent = alternateTexts[currentAlternateTextIndex];
     currentAlternateTextIndex = (currentAlternateTextIndex + 1) % alternateTexts.length;
@@ -58,10 +61,13 @@ function generateProductCards(productsToDisplay) {
         addToCartSection.appendChild(quantityInput);
         addToCartSection.appendChild(addButton);
 
-        addButton.addEventListener('click', () => {
+        addButton.addEventListener('click', async () => {
             const quantity = parseInt(quantityInput.value);
-            cartItemCount += quantity; // Increment cart item count
-            cartCountSpan.textContent = cartItemCount; // Update cart count display
+        
+            console.log(product.productId);
+
+            await addProductToCart(product.productId, quantity)
+           
         });
         const productStock = document.createElement("p");
         productStock.style.marginTop = "15px"
@@ -79,18 +85,32 @@ function generateProductCards(productsToDisplay) {
         productContainer.appendChild(card);
     });
 }
-const addButton = document.querySelector('.add-button');
 
 
-async function addProductToCart(productID){
+async function addProductToCart(productID, orderNo) {
 
+    const decodedToken = parseJwt(token)
+    const userId = (decodedToken.UserID)
     try {
-        const response = await fetch('http://localhost:4503/cart', {
+
+        const response = await fetch(`http://localhost:4503/cart/${userId}`, {
             method: "POST",
             headers: {
-                "Content-type": "application/json"
-            }
+                "Content-type": 'application/json'
+            },
+            body:
+            JSON.stringify({
+                productId: productID,
+                orderNo: orderNo
+            })
+
         })
+
+        console.log(response);
+        if(response.ok){
+            console.log("added to crt");
+        }
+
     } catch (error) {
         console.log(error.message);
     }
@@ -125,4 +145,23 @@ searchInput.addEventListener('input', () => {
     }
 });
 
+function parseJwt(token) {
+    try {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const payload = decodeURIComponent(
+            atob(base64)
+                .split('')
+                .map(c => {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                })
+                .join(''),
+        );
+
+        return JSON.parse(payload);
+    } catch (error) {
+        console.error('Error parsing JWT token:', error);
+        return null;
+    }
+}
 updateProductCards();
