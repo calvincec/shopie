@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!token) {
         console.log("no tokn");
         window.location.href = '/Frontend/login/login.html'
-    } else {
+    } 
         if (decodedToken.Role === "user") {
             customerUI.style.display = "block"
             adminUI.style.display = "none"
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         greetingsElement.style.fontSize = '14px'
         customerGreetings.style.fontSize = '14px'
-    }
+    
 })
 
 

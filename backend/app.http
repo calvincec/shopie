@@ -51,13 +51,14 @@ Content-Type: application/json
 
 
 ###user view all products in cart
-GET  http://localhost:4503/cart/view/f3b4ebe7-f121-4b67-a58d-1f1c8f900f59
+GET  http://localhost:4503/cart/view/4af2b7e6-454e-411d-95bd-b90c208c16e7
 
 ###user remove item from cart
 DELETE http://localhost:4503/cart/722e4d88-b2e8-4cc3-b8c8-6b1ad7433bd1
 Content-Type: application/json
 
-
+###
+DELETE http://localhost:4503/cart/3652a832-dfb0-4019-ac2a-c8060112826e
 
 
 
@@ -80,7 +81,7 @@ Content-Type: application/json
 
 }
 ### get user details
-GET http://localhost:4503/users/6e358199-6653-4351-9d27-1136d398aa48
+GET http://localhost:4503/users/f3b4ebe7-f121-4b67-a58d-1f1c8f900f59
 
 ### Login user
 POST http://localhost:4503/users/login
@@ -98,9 +99,16 @@ GET http://localhost:4503/users/customers/get-all-customers
 
 
 ### Update user
-PATCH http://localhost:4503/users/update-information/e3e64beb-fl;ef8-42dbadc4-cccaa4c5ac82
+PATCH http://localhost:4503/users/update-information/f3b4ebe7-f121-4b67-a58d-1f1c8f900f59
 Content-Type: application/json
 
 {
-    "Email": "Kevin.mathenge@mail.com"
+    "Email": "Kevin.mathenge@mail.com",
+    "PhoneNumber": "123456789"
 }
+
+
+# EXEC UpdateUserProcedure
+#     @UserID = 'f3b4ebe7-f121-4b67-a58d-1f1c8f900f59',
+#     @Email = 'Kevin.mathenge@mail.com',
+#     @PhoneNumber = '1234567890';

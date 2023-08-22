@@ -97,7 +97,16 @@ topnavstyles.innerHTML = adminTopnavStyling
 
 
 
+const token = localStorage.getItem("authToken")
 
+
+
+document.addEventListener("DOMContentLoaded", () => {
+ 
+    if(!token){
+        console.log("hamna token aadmin");
+    }
+})
 
 const alternateTextElement = document.getElementById("alternateText");
 const alternateTexts = ["Welcome to Shoppie!", "Free delivery", "Genuine Products"];
