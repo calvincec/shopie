@@ -31,12 +31,14 @@ function generateProductCards(productsToDisplay) {
         const productName = document.createElement("h3");
         productName.textContent = product.productName;
 
+        productName.classList.add('productName')
+
         const productPrice = document.createElement("p");
         productPrice.textContent = `Price: ${product.price}`;
 
         const productDescription = document.createElement("p");
         productDescription.textContent = product.productDescription;
-
+        productDescription.classList.add("product-description")
         const addToCartSection = document.createElement('div');
         addToCartSection.className = 'add-to-cart';
 
@@ -78,8 +80,21 @@ function generateProductCards(productsToDisplay) {
     });
 }
 const addButton = document.querySelector('.add-button');
-const cartCountSpan = document.querySelector('.cart-count');
 
+
+async function addProductToCart(productID){
+
+    try {
+        const response = await fetch('http://localhost:4503/cart', {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            }
+        })
+    } catch (error) {
+        console.log(error.message);
+    }
+}
 
 async function fetchProducts() {
     try {

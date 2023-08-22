@@ -20,3 +20,5 @@ SELECT * FROM Users;
 create database shopie;
 
 use shopie;
+
+select * from cart;
