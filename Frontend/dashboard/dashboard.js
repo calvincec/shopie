@@ -10,12 +10,12 @@ const userLogoutButton = document.getElementById('user-logout')
 
 
 document.addEventListener("DOMContentLoaded", () => {
-
     const decodedToken = parseJwt(token)
    let  userId = decodedToken.UserID
     // console.log(userId);
     // console.log(decodedToken);
     if (!token) {
+        console.log("no tokn");
         window.location.href = '/Frontend/login/login.html'
     } else {
         if (decodedToken.Role === "user") {

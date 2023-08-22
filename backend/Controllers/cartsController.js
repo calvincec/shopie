@@ -30,6 +30,7 @@ const addToCart = async (req,res)=>{
         } 
         
     } catch (error) {
+        console.log(error);
         // return res.status(400).json({Error: error})
         return res.status(400).json({Error: "The product does not exist in our records"})
     }
