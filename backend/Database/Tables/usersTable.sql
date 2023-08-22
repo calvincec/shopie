@@ -12,11 +12,13 @@ CREATE TABLE Users
     isAdmin     BIT DEFAULT 0
 )
 
+select * from Users
 
 SELECT *
 FROM Users;
 create database shopie;
 use shopie;
+drop table cart
 CREATE TABLE cart
 (
     cartId    VARCHAR(200) PRIMARY KEY,
