@@ -5,11 +5,12 @@ CREATE OR ALTER PROCEDURE registerUsersProcedure(
     @Password NVARCHAR(500),
     @PhoneNumber NVARCHAR(20),
     @isAdmin BIT,
+    @isActive BIT,
     @ResetToken NVARCHAR(255) = NULL)
 AS
 BEGIN
     INSERT INTO Users
-        (UserID, Username, Email, Password, PhoneNumber, isAdmin, ResetToken)
+        (UserID, Username, Email, Password, PhoneNumber, isAdmin, isActive, ResetToken)
     VALUES
-        (@UserID, @Username, @Email, @Password, @PhoneNumber, @isAdmin, @ResetToken)
+        (@UserID, @Username, @Email, @Password, @PhoneNumber, @isAdmin, @isActive, @ResetToken)
 END

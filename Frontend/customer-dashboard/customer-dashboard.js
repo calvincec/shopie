@@ -73,6 +73,7 @@ function generateProductCards(productsToDisplay) {
         
             for (let i = 0; i < quantity; i++) {
                 await addProductToCart(product.productId, 1);
+                
             }
         });
         
