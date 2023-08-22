@@ -51,7 +51,7 @@ Content-Type: application/json
 
 
 ###user view all products in cart
-GET  http://localhost:4503/cart/view/c1bba238-7240-4f11-9047-89cd68fccea4
+GET  http://localhost:4503/cart/view/f9addcd4-4aa9-4f7b-9e42-b4696e8d22a1
 
 ###user remove item from cart
 DELETE http://localhost:4503/cart/722e4d88-b2e8-4cc3-b8c8-6b1ad7433bd1

@@ -13,6 +13,9 @@ CREATE TABLE Users
 )
 
 
+delete  from Users where Email is not null;
+
+
 
 
 SELECT * FROM Users;

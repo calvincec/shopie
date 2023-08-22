@@ -48,6 +48,7 @@ function generateProductCards(productsToDisplay) {
         const quantityInput = document.createElement('input');
         quantityInput.type = 'number';
         quantityInput.min = '1';
+        quantityInput.max = product.stock
         quantityInput.value = '1';
 
         const addButton = document.createElement('button');
@@ -64,11 +65,17 @@ function generateProductCards(productsToDisplay) {
         addButton.addEventListener('click', async () => {
             const quantity = parseInt(quantityInput.value);
         
-            console.log(product.productId);
-
-            await addProductToCart(product.productId, quantity)
-           
+        
+            if (quantity > product.stock) {
+                alert('Items cannot be more than the available stock.');
+                return;
+            }
+        
+            for (let i = 0; i < quantity; i++) {
+                await addProductToCart(product.productId, 1);
+            }
         });
+        
         const productStock = document.createElement("p");
         productStock.style.marginTop = "15px"
         productStock.style.fontStyle = "italic";
