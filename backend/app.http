@@ -4,11 +4,11 @@ POST http://localhost:4503/product
 Content-Type: application/json
 
 {
-   "productName": "Classic Business Quartz Wrist Watch",
-   "productDescription": "Fashion Mens Casual Classic Business Quartz Calendar Wrist Watches Men",
-   "price": 95499,
-   "productImage": "https://ke.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/59/0416001/1.jpg?1735",
-   "stock": 65
+   "productName": "6 piece inner wear",
+   "productDescription": "Fashion 6Pcs Soft Cotton Checked Men's Boxers – Multicolor",
+   "price": 650,
+   "productImage": "https://ke.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/91/432928/1.jpg?7106",
+   "stock": 198
 }
 
 
@@ -51,7 +51,7 @@ Content-Type: application/json
 
 
 ###user view all products in cart
-GET  http://localhost:4503/cart/view/f9addcd4-4aa9-4f7b-9e42-b4696e8d22a1
+GET  http://localhost:4503/cart/view/f3b4ebe7-f121-4b67-a58d-1f1c8f900f59
 
 ###user remove item from cart
 DELETE http://localhost:4503/cart/722e4d88-b2e8-4cc3-b8c8-6b1ad7433bd1

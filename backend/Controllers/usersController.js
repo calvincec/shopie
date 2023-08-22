@@ -11,7 +11,7 @@ const registerUser = async (req, res) => {
     try {
 
         const UserID = v4();
-        const { UserName, Email, Password, PhoneNumber, isAdmin } = req.body
+        const { UserName, Email, Password, PhoneNumber, isActive, isAdmin } = req.body
         const existingUser = await DB.exec('CheckIfUserExistsProcedure', { Email })
 
         if (existingUser.recordset.length > 0) {
@@ -26,6 +26,7 @@ const registerUser = async (req, res) => {
             Email,
             Password: hashedPassword,
             PhoneNumber,
+            isActive,
             isAdmin
         })
 
@@ -285,6 +286,19 @@ const updateProfile = async (req, res) => {
         });
     }
 };
+
+// const deactivateAccount = async(req, res) => {
+//     try {
+//         const {UserID} = req.body
+//         const result =
+//     } catch (error) {
+//         console.log(error);
+//         return res.status(500).jsson({
+//             error: error
+//         })
+//     }
+// }
+
 
 module.exports = {
     registerUser,
