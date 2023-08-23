@@ -139,6 +139,9 @@ async function removeItemFromCart(productID) {
     }
 }
 
+function viewProfile(){
+    window.location.href = "/Frontend/edit-profile/edit-profile.html"
+}
 
 
 function parseJwt(token) {

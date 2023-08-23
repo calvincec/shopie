@@ -76,6 +76,7 @@ Content-Type: application/json
    "Email": "calyndemo17@gmail.com",
    "Password": "12345678",
    "PhoneNumber": "254722080405",
+   "isActive": 1,
    "isAdmin": 0
 
 

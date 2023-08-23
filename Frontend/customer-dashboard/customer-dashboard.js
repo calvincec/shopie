@@ -97,8 +97,10 @@ function generateProductCards(productsToDisplay) {
 
 async function addProductToCart(productID, orderNo) {
 
+
     const decodedToken = parseJwt(token)
     const userId = (decodedToken.UserID)
+    console.log(userId);
     try {
 
         const response = await fetch(`http://localhost:4503/cart/${userId}`, {
@@ -172,5 +174,9 @@ function parseJwt(token) {
         return null;
     }
 }
+
+function viewProfile(){
+    window.location.href = "/Frontend/edit-profile/edit-profile.html"
+}
+
 updateProductCards();
-fetchProducts()

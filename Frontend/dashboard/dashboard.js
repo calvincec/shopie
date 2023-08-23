@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
             adminUI.style.display = "none"
             adminUI.style.visibility = "hidden"
 
+
         } else {
             adminUI.style.display = "block"
             customerUI.style.display = "none"
