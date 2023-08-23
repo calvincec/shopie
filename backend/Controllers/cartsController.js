@@ -68,6 +68,7 @@ const userViewCart = async(req, res)=>{
 }
 
 const removeItemFromCart = async(req,res)=>{
+   try {
     const cartId = req.params.cartId
     const pool = await mssql.connect(sqlConfig)
     const result = await pool.request()
@@ -81,6 +82,9 @@ const removeItemFromCart = async(req,res)=>{
     }else{
             return res.status(404).json({message: "There is no such product in cart"})
     }
+   } catch (error) {
+    console.log(error);
+   }
 
 
 }

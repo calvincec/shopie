@@ -13,4 +13,5 @@ BEGIN
         (UserID, Username, Email, Password, PhoneNumber, isAdmin, isActive, ResetToken)
     VALUES
         (@UserID, @Username, @Email, @Password, @PhoneNumber, @isAdmin, @isActive, @ResetToken)
-END
+END;
+

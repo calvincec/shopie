@@ -29,7 +29,7 @@
                 <div class="dropdown">
                     <span class="material-symbols-outlined clickable">person</span>
                     <div class="dropdown-content">
-                        <a href="/Frontend/">View Profile</a>
+                        <a onclick="viewProfile()">View Profile</a>
                         <a id="user-logout" onclick="logout()">Logout</a>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
 
 
         <div class="product-container" id="productContainer">
-            <!-- Product cards will be dynamically generated here -->
+          
         </div>
 
         <div id="no-products-found">
@@ -69,7 +69,7 @@
 
         </script>
 
-        <script src="/Frontend/customer-dashboard/customer-dashboard.js"></script>
+      
     </div>
 
     <div id="admin-ui" style="display: none;">
@@ -100,7 +100,7 @@
             </div>
             <div class="menus">
                 <div class="dropdown">
-                    <span class="material-symbols-outlined clickable">person</span>
+                    <span class="material-symbols-outlined clickable" onclick="viewProfile()">person</span>
                     <div class="dropdown-content">
                        
                         <a href="#" onclick="logout()">Logout</a>
@@ -145,13 +145,15 @@
         <div id="no-products-found">
 
         </div>
-        <script src="/Frontend/admin-dashboard/admin-dashboard.js"></script>
-
+ 
     </div>
 
 
 
     <script src="dashboard.js"></script>
+    <script src="/Frontend/admin-dashboard/admin-dashboard.js"></script>
+    <script src="/Frontend/customer-dashboard/customer-dashboard.js"></script>
+
 </body>
 
 </html>
