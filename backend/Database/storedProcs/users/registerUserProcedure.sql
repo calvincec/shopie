@@ -15,3 +15,7 @@ BEGIN
         (@UserID, @Username, @Email, @Password, @PhoneNumber, @isAdmin, @isActive, @ResetToken)
 END;
 
+
+
+use shopie;
+select * from Users;
