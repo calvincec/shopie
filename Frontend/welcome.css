@@ -77,9 +77,10 @@
   max-height: 500px;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: calc(16.666% - 20px);
+  width: calc(20% - 20px);
   box-sizing: border-box;
   text-align: center;
+  
 }
 .product-card img {
   max-width: 100%;
@@ -115,7 +116,7 @@
 .product-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     margin-left: 10px;
     margin-right: 10px;
     
