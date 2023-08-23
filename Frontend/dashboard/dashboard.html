@@ -15,6 +15,7 @@
 
 <body>
 
+
     <div id="user-ui" style="display: none;">
 
         <div class="top-nav">
@@ -33,20 +34,27 @@
                         <a id="user-logout" onclick="logout()">Logout</a>
                     </div>
                 </div>
-                <span class="material-symbols-outlined clickable" onclick="window.location.href ='/Frontend/cart/cart.html' " id="shopping-cart">shopping_cart</span>
+                <span class="material-symbols-outlined clickable"
+                    onclick="window.location.href ='/Frontend/cart/cart.html' " id="shopping-cart">shopping_cart</span>
                 <p id="helloCustomerMessage"></p>
             </div>
         </div>
+        <div id="toast" class="toast">
+            Item added to cart!
+        </div>
+
 
 
         <div class="product-container" id="productContainer">
-          
-        </div>
-
-        <div id="no-products-found">
 
         </div>
 
+        <div style="display: none;" id="lottie-animation">
+            <lottie-player src="https://lottie.host/e62d7192-b56b-4e78-8103-eaa618ff6947/mn9eq0lpZX.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+            <h2>No results found :(</h2>
+        </div>
+      
+        
 
         <script>
 
@@ -69,7 +77,7 @@
 
         </script>
 
-      
+
     </div>
 
     <div id="admin-ui" style="display: none;">
@@ -87,8 +95,8 @@
 
             #add-products:hover {
                 background-color: #0056b3;
-            } 
-        </style>     
+            }
+        </style>
         <div class="top-nav">
             <div class="alternating-menu">
                 <p id="alternateText">Welcome to Shoppie</p>
@@ -102,7 +110,7 @@
                 <div class="dropdown">
                     <span class="material-symbols-outlined clickable" onclick="viewProfile()">person</span>
                     <div class="dropdown-content">
-                       
+
                         <a href="#" onclick="logout()">Logout</a>
                     </div>
                 </div>
@@ -112,40 +120,43 @@
         </div>
 
         <div class="info" style="color: green;"></div>
-        <div  id="productContaineradm">
-                <div class="addproduct" >
-                    <h2 class="carthead"><span class="addnew">Add a New Product</span> <img src="/Frontend/Assets/cancel.png" alt="" class="cancelbtn"></h2>
-                    <form enctype="multipart/form-data" action="submit_product.php" method="POST" class="addproductfm">
-                        <label for="product-name">Product Name:</label>
-                        <input type="text" id="product-name" name="product-name" required>
-            
-                        <label for="product-description">Product Description:</label>
-                        <textarea id="product-description" name="product-description" required></textarea>
-            
-                        <label for="product-price">Price:</label>
-                        <input type="number" id="product-price" name="product-price" step="0.01" required>
-            
-                        <label for="product-image">Product Image:</label>
-                        <input type="file" id="product-image" name="product-image" accept="image/*" required>
-            
-                        <label for="product-stock">Stock:</label>
-                        <input type="number" id="product-stock" name="product-stock" required>
-            
-                        <button type="submit" class="btn">Add Product</button>
-                    </form>
-                </div>
+        <div id="productContaineradm">
+            <div class="addproduct">
+                <h2 class="carthead"><span class="addnew">Add a New Product</span> <img
+                        src="/Frontend/Assets/cancel.png" alt="" class="cancelbtn"></h2>
+                <form enctype="multipart/form-data" action="submit_product.php" method="POST" class="addproductfm">
+                    <label for="product-name">Product Name:</label>
+                    <input type="text" id="product-name" name="product-name" required>
+
+                    <label for="product-description">Product Description:</label>
+                    <textarea id="product-description" name="product-description" required></textarea>
+
+                    <label for="product-price">Price:</label>
+                    <input type="number" id="product-price" name="product-price" step="0.01" required>
+
+                    <label for="product-image">Product Image:</label>
+                    <input type="file" id="product-image" name="product-image" accept="image/*" required>
+
+                    <label for="product-stock">Stock:</label>
+                    <input type="number" id="product-stock" name="product-stock" required>
+
+                    <button type="submit" class="btn">Add Product</button>
+                </form>
+            </div>
 
 
-           
-            
+
+
             <!-- Product cards will be dynamically generated here -->
         </div>
 
-        
-        <div id="no-products-found">
 
+        <div style="display: none;" id="lottie-animation">
+            <lottie-player src="https://lottie.host/e62d7192-b56b-4e78-8103-eaa618ff6947/mn9eq0lpZX.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+            <h2>No results found :(</h2>
         </div>
- 
+      
+
     </div>
 
 
@@ -153,6 +164,7 @@
     <script src="dashboard.js"></script>
     <script src="/Frontend/admin-dashboard/admin-dashboard.js"></script>
     <script src="/Frontend/customer-dashboard/customer-dashboard.js"></script>
+    <script src='https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js'></script>
 
 </body>
 

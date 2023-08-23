@@ -110,7 +110,7 @@ Content-Type: application/json
 
 ### Deactivate account
 
-POST http://localhost:4503/users/disable-account/f3b4ebe7-f121-4b67-a58d-1f1c8f900f59
+POST http://localhost:4503/users/disable-account/172823eb-4088-4c1c-961e-62ce515bf8f9
 # EXEC UpdateUserProcedure
 #     @UserID = 'f3b4ebe7-f121-4b67-a58d-1f1c8f900f59',
 #     @Email = 'Kevin.mathenge@mail.com',

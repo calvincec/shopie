@@ -1,4 +1,4 @@
-CREATE PROCEDURE DisableUserAccount
+CREATE OR ALTER PROCEDURE DisableUserAccount
     @UserID NVARCHAR(255)
 AS
 BEGIN
@@ -8,4 +8,3 @@ BEGIN
     
     RETURN 0; -- Success
 END;
-
