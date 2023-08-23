@@ -173,3 +173,4 @@ function parseJwt(token) {
     }
 }
 updateProductCards();
+fetchProducts()

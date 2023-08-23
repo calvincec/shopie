@@ -41,17 +41,17 @@ DELETE http://localhost:4503/product/c5db4628-6096-4b2e-a50f-1691d33e25be
 ### MANAGE CART
 
 ###add to cart
-POST http://localhost:4503/cart/8caf46b1-080b-4e46-b7d2-57780ea5684f
+POST http://localhost:4503/cart/d7abc609-b651-404d-81a1-8d6bf5c1855c
 Content-Type: application/json
 
 {
-   "productId": "090a3e89-3dcb-4f87-a0e1-10c28849a49a",
+   "productId": "229a1597-b2d5-46c7-a37b-2c58a424faab",
    "orderNo": 2
 }
 
 
 ###user view all products in cart
-GET  http://localhost:4503/cart/view/4af2b7e6-454e-411d-95bd-b90c208c16e7
+GET  http://localhost:4503/cart/view/d7abc609-b651-404d-81a1-8d6bf5c1855c
 
 ###user remove item from cart
 DELETE http://localhost:4503/cart/722e4d88-b2e8-4cc3-b8c8-6b1ad7433bd1

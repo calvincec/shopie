@@ -39,7 +39,7 @@ const getAllProducts = async (req, res)=>{
         .execute('getAllProjectsProc')
 
         if(result.recordset.length<1){
-            return res.status(404).json({message: "No products in the system."})
+            return res.json({products: []})
         }
         else {
             return res.status(200).json({products: result.recordset})

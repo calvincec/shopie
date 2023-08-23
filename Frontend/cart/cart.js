@@ -99,20 +99,23 @@ function generateProductCards(products) {
         removeFromCart.textContent = "Remove From cart"
 
         removeFromCart.addEventListener('click', async () => {
-
-            let productID = product.cartId
-
-            removeItemFromCart(productID)
-
-            const notificationElement = document.getElementById("notification");
-            notificationElement.style.display = "block";
-            setTimeout(() => {
-                notificationElement.style.display = "none";
-            }, 3000); // Hide after 3 seconds
-
-            fetchProductsInCart()
-            updateProductCards()
-        })
+            let productID = product.cartId;
+        
+            try {
+                const result = await removeItemFromCart(productID);
+                if (result.ok) {
+                    console.log(`item ${productID} deleted`);
+                    updateProductCards(); // Update UI after successful removal
+                    const notificationElement = document.getElementById("notification");
+                    notificationElement.style.display = "block";
+                    setTimeout(() => {
+                        notificationElement.style.display = "none";
+                    }, 4000); // Hide after 4 seconds
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        });
        
         productCard.appendChild(productImageContainer)
      //   productCard.appendChild(productTitle)
@@ -124,19 +127,16 @@ function generateProductCards(products) {
 
 
 
-async function removeItemFromCart(productID){
-  try {
-    const result = await fetch(`http://localhost:4503/cart/${productID}`, {
-        method: "DELETE"
-    })
+async function removeItemFromCart(productID) {
+    try {
+        const result = await fetch(`http://localhost:4503/cart/${productID}`, {
+            method: "DELETE"
+        });
 
-    if(result.ok){
-        console.log(result);
-        console.log(`item ${productID} deleted`);
+        return result; // Return the result for checking success in the event listener
+    } catch (error) {
+        console.log(error);
     }
-  } catch (error) {
-    console.log(error);
-  }
 }
 
 

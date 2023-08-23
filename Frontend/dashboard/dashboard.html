@@ -6,6 +6,7 @@
     <title>Shoppie</title>
 
     <link rel="stylesheet" href="customer-dashboard.css">
+    <link rel="stylesheet" href="/Frontend/admin-dashboard/admin-dashboard.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -15,6 +16,7 @@
 <body>
 
     <div id="user-ui" style="display: none;">
+
         <div class="top-nav">
             <div class="alternating-menu">
                 <p id="alternateText">Welcome to Shoppie</p>
@@ -44,48 +46,7 @@
         <div id="no-products-found">
 
         </div>
-        <div id="admin-ui" style="display: none;">
-            <style>
-                #add-products {
-                    padding: 10px 20px;
-                    background-color: white;
-                    border: none;
-                    border-radius: 5px;
-                    color: black;
-                    font-size: 16px;
-                    cursor: pointer;
-                    margin-left: 20px;
-                }
-    
-                #add-products:hover {
-                    background-color: #0056b3;
-                }
-            </style>
-            <div class="top-nav">
-                <div class="alternating-menu">
-                    <p id="alternateText">Welcome to Shoppie</p>
-                </div>
-                <div class="search-container">
-                    <input type="text" id="search" placeholder="Search...">
-                    <button type="button" id="search-button">Search Products</button>
-                    <button type="button" id="add-products">Add Product</button>
-                </div>
-                <div class="menus">
-                    <div class="dropdown">
-                        <span class="material-symbols-outlined clickable">person</span>
-                        <div class="dropdown-content">
-                           
-                            <a href="#">Logout</a>
-                        </div>
-                    </div>
-    
-                    <p style="color: white;" id="helloAdminMessage"></p>
-                </div>
-            </div>
-    
-        </div>
 
-        <script src="dashboard.js"></script>
 
         <script>
 
@@ -111,11 +72,62 @@
         <script src="/Frontend/customer-dashboard/customer-dashboard.js"></script>
     </div>
 
-   
+    <div id="admin-ui" style="display: none;">
+        <style>
+            #add-products {
+                padding: 10px 20px;
+                background-color: white;
+                border: none;
+                border-radius: 5px;
+                color: black;
+                font-size: 16px;
+                cursor: pointer;
+                margin-left: 20px;
+            }
+
+            #add-products:hover {
+                background-color: #0056b3;
+            } 
+        </style>
+        <div class="top-nav">
+            <div class="alternating-menu">
+                <p id="alternateText">Welcome to Shoppie</p>
+            </div>
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Search...">
+                <button type="button" id="search-button">Search Products</button>
+                <button type="button" id="add-products">Add Product</button>
+            </div>
+            <div class="menus">
+                <div class="dropdown">
+                    <span class="material-symbols-outlined clickable">person</span>
+                    <div class="dropdown-content">
+                       
+                        <a href="#" onclick="logout()">Logout</a>
+                    </div>
+                </div>
+
+                <p style="color: white;" id="helloAdminMessage"></p>
+            </div>
+        </div>
+
+        <div class="info" style="color: green;"></div>
+        <div class="product-containeradm" id="productContaineradm">
+            
+            <!-- Product cards will be dynamically generated here -->
+        </div>
+
+        
+        <div id="no-products-found">
+
+        </div>
+        <script src="/Frontend/admin-dashboard/admin-dashboard.js"></script>
+
+    </div>
 
 
 
-  
+    <script src="dashboard.js"></script>
 </body>
 
 </html>

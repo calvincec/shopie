@@ -12,8 +12,8 @@ const userLogoutButton = document.getElementById('user-logout')
 document.addEventListener("DOMContentLoaded", () => {
     const decodedToken = parseJwt(token)
    let  userId = decodedToken.UserID
-    console.log(userId);
-    console.log(decodedToken);
+    // console.log(userId);
+    // console.log(decodedToken);
     if (!token) {
         console.log("no tokn");
         window.location.href = '/Frontend/login/login.html'
@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
             adminUI.style.display = "block"
             customerUI.style.display = "none"
             customerUI.style.visibility = "hidden"
+            
         }
 
 
@@ -67,3 +68,4 @@ function parseJwt(token) {
         return null;
     }
 }
+
