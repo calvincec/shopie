@@ -73,11 +73,11 @@ Content-Type: application/json
 
 {
    "UserName": "Calvince Ndemo",
-   "Email": "calyndemo17@gmail.com",
+   "Email": "calyndemo20@gmail.com",
    "Password": "12345678",
-   "PhoneNumber": "254722080405",
+   "PhoneNumber": "254726080405",
    "isActive": 1,
-   "isAdmin": 0
+   "isAdmin": 1
 
 
 }

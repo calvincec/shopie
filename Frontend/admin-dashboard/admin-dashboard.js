@@ -88,6 +88,7 @@ function generateProductCards(productsToDisplay) {
             setTimeout(info.innerHTML='',7000)
             info.style.color = 'green'
         }
+        updateProductCards();
         })
 
 
@@ -179,8 +180,8 @@ eddtoproducts.addEventListener('click',()=>{
     addproduct.style.position = 'absolute';
     addproduct.style.left = 0;
     addproduct.style.right = 0
-    addproduct.style.marginLeft= auto; 
-    addproduct.style.marginRight= auto;
+    addproduct.style.marginLeft= 'auto'; 
+    addproduct.style.marginRight= 'auto';
     addproduct.style.boxShadow = 'rgba(0, 0, 0, 0.56) 0px 22px 70px 4px';
 })
 
