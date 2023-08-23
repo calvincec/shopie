@@ -47,8 +47,9 @@ userInputForm.addEventListener('submit', async (event) => {
                 Email: email,
                 PhoneNumber: phoneNumber,
                 Password: password,
-                isActive: 1
-,                isAdmin: 0
+                ResetToken: null,
+                isActive: 1,
+                isAdmin: 0
             })
         })
 

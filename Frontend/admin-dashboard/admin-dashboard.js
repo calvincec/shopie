@@ -8,7 +8,7 @@ const info = document.querySelector('.info')
 
 function generateProductCards(productsToDisplay) {
     productContaineradm.innerHTML = "";
-    console.log(productsToDisplay);
+  //  console.log(productsToDisplay);
     if (productsToDisplay.length==0){
         productContaineradm.innerHTML = "No products available"
         return

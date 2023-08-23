@@ -96,9 +96,8 @@ const getUserDetails = async (req, res) => {
 const loginUser = async (req, res) => {
     try {
 
-        const { Email, Password } = req.body
-        const user = await DB.exec("UserLoginProcedure", { Email })
-
+        const { Email, Password } = req.body;
+        const user = await DB.exec("UserLoginProcedure", { Email });
 
         if (user.recordset.length === 0) {
             return res.status(404).json({
@@ -106,6 +105,11 @@ const loginUser = async (req, res) => {
             });
         }
 
+        if (!user.recordset[0].isActive) {
+            return res.status(401).json({
+                error: 'Account is deactivated. Please contact support.',
+            });
+        }
         const hashedPassword = user.recordset[0].Password;
         const passwordMatch = await bcrypt.compare(Password, hashedPassword);
 
@@ -258,46 +262,46 @@ const getAllCustomers = async (req, res) => {
 const updateProfile = async (req, res) => {
     try {
         const { UserID } = req.params; // Get UserID from URL parameter
-        const { Email, PhoneNumber } = req.body; 
+        const { Email, PhoneNumber } = req.body; // Get updated Email and PhoneNumber from the request body
 
         const result = await DB.exec('UpdateUserProcedure', {
             UserID,
-            Email,
-            PhoneNumber
+            Email,         // Only send Email if it's being updated
+            PhoneNumber    // Only send PhoneNumber if it's being updated
         });
 
-        if (result.returnValue === 0) {
-            return res.status(200).json({
-                message: 'User information has been successfully updated.',
-            });
-        } else if (result.returnValue === 1) {
-            return res.status(404).json({
-                error: 'User not found.',
-            });
-        } else {
-            return res.status(500).json({
-                error: 'Failed to update user information.',
-            });
-        }
+        return res.status(200).json({
+            message: 'User information has been successfully updated.',
+        });
     } catch (error) {
-        console.log(error);
+        console.error(error);
         return res.status(500).json({
             error: 'An error occurred while updating user information.',
         });
     }
 };
 
-// const deactivateAccount = async(req, res) => {
-//     try {
-//         const {UserID} = req.body
-//         const result =
-//     } catch (error) {
-//         console.log(error);
-//         return res.status(500).jsson({
-//             error: error
-//         })
-//     }
-// }
+module.exports = {
+    updateProfile
+};
+
+
+const deactivateAccount = async(req, res) => {
+    try {
+        const {UserID} = req.params
+        const result = await DB.exec("DisableUserAccount", {UserID})
+        if(result.returnValue === 0){
+            return res.status(200).json({
+                message: "Account disabled succesfully"
+            })
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            error: error
+        })
+    }
+}
 
 
 module.exports = {
@@ -307,5 +311,6 @@ module.exports = {
     resetPassword,
     initiatePasswordReset,
     getAllCustomers,
-    updateProfile
+    updateProfile,
+    deactivateAccount
 }
