@@ -4,7 +4,7 @@ POST http://localhost:4503/product
 Content-Type: application/json
 
 {
-   "productName": "chupi piece inner wear",
+   "productName": "clothed piece phone wear",
    "productDescription": "Fashion 6Pcs Soft Cotton Checked Men's Boxers – Multicolor",
    "price": 650,
    "productImage": "https://ke.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/91/432928/1.jpg?7106",

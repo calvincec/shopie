@@ -21,7 +21,7 @@ const productContainer = document.getElementById("productContainer");
 const searchInput = document.getElementById("search");
 const searchButton = document.getElementById("search-button");
 
-function generateProductCards(productsToDisplay) {
+function generateProductCardsmem(productsToDisplay) {
     productContainer.innerHTML = "";
 
     productsToDisplay.forEach(product => {
@@ -124,7 +124,7 @@ async function addProductToCart(productID, orderNo) {
     }
 }
 
-async function fetchProducts() {
+async function fetchProductsmem() {
     try {
         const response = await fetch("http://localhost:4503/product/all");
         const data = await response.json();
@@ -135,16 +135,16 @@ async function fetchProducts() {
     }
 }
 
-async function updateProductCards() {
-    products = await fetchProducts(); // Update the global 'products' array with fetched data
-    generateProductCards(products);
+async function updateProductCardsmem() {
+    products = await fetchProductsmem(); // Update the global 'products' array with fetched data
+    generateProductCardsmem(products);
 }
 
 searchInput.addEventListener('input', () => {
     const searchTerm = searchInput.value.toLowerCase();
     const filteredProducts = products.filter(product => product.productName.toLowerCase().includes(searchTerm));
 
-    generateProductCards(filteredProducts);
+    generateProductCardsmem(filteredProducts);
 
     if (filteredProducts.length < 1) {
         errorElement.innerHTML = "No product(s) found";
@@ -172,4 +172,4 @@ function parseJwt(token) {
         return null;
     }
 }
-updateProductCards();
+updateProductCardsmem();

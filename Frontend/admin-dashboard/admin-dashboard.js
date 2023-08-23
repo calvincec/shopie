@@ -1,21 +1,31 @@
 let productsadm = []
 
 const productContaineradm = document.querySelector("#productContaineradm");
-const searchInputadm = document.getElementById("search");
+const searchInputadm = document.getElementById("searchadm");
 const searchButtonadm = document.getElementById("search-button");
 const info = document.querySelector('.info')
+const addproduct = document.querySelector('.addproduct')
+const eddtoproducts = document.querySelector('#add-products')
+const cancelbtn = document.querySelector('.cancelbtn')
+const addproductfm = document.querySelector('.addproductfm')
+const addnew = document.querySelector('.addnew')
+
+
+
+
+addproduct.style.display = 'none'
+
+
 
 
 function generateProductCards(productsToDisplay) {
     productContaineradm.innerHTML = "";
-    console.log(productsToDisplay);
     if (productsToDisplay.length==0){
         productContaineradm.innerHTML = "No products available"
         return
     }
     productsToDisplay.forEach(product => {
-        
-
+       
         const card = document.createElement("div");
         card.classList.add("product-cardadm");
 
@@ -64,7 +74,7 @@ function generateProductCards(productsToDisplay) {
         deletebtn.addEventListener('click', async (e)=>{
         e.preventDefault()
         const id = product.productId
-        await console.log(product.productId);
+        
         const res= await deleteproduct(id)
         if(res=="product deleted successfully"){
             productContaineradm.removeChild(card)
@@ -78,6 +88,36 @@ function generateProductCards(productsToDisplay) {
             setTimeout(info.innerHTML='',7000)
             info.style.color = 'green'
         }
+        })
+
+
+        update.addEventListener('click', async(e)=>{
+            e.preventDefault()
+            productContaineradm.innerHTML=""
+            productContaineradm.appendChild(addproduct)
+            const updatedetails = [product.productName, product.productDescription,product.price, product.stock]
+            
+            
+            const productName = document.querySelector('#product-name')
+            const productDescription = document.querySelector('#product-description')
+            const price = document.querySelector('#product-price')
+            const stock = document.querySelector('#product-stock')
+
+            productName.value = updatedetails[0]
+            productDescription.value = updatedetails[1]
+            price.value = updatedetails[2]
+            stock.value = updatedetails[3]
+            addnew.innerHTML = `Updating The Product `
+
+            addproduct.style.display = 'block'
+            addproduct.style.position = 'absolute'
+            addproduct.style.left = 0;
+            addproduct.style.right = 0
+            addproduct.style.marginLeft= auto; 
+            addproduct.style.marginRight= auto;
+            
+            addproduct.style.boxShadow = 'rgba(0, 0, 0, 0.56) 0px 22px 70px 4px';
+           
         })
     });
 }
@@ -99,8 +139,8 @@ async function updateProductCards() {
     generateProductCards(products);
 }
 
-searchInput.addEventListener('input', () => {
-    const searchTerm = searchInput.value.toLowerCase();
+searchInputadm.addEventListener('input', () => {
+    const searchTerm = searchInputadm.value.toLowerCase();
     const filteredProducts = products.filter(product => product.productName.toLowerCase().includes(searchTerm));
 
     generateProductCards(filteredProducts);
@@ -132,4 +172,22 @@ async function deleteproduct(productId){
     }
 }
   
+eddtoproducts.addEventListener('click',()=>{
+    productContaineradm.innerHTML=''
+    productContaineradm.appendChild(addproduct);
+    addproduct.style.display = 'block';
+    addproduct.style.position = 'absolute';
+    addproduct.style.left = 0;
+    addproduct.style.right = 0
+    addproduct.style.marginLeft= auto; 
+    addproduct.style.marginRight= auto;
+    addproduct.style.boxShadow = 'rgba(0, 0, 0, 0.56) 0px 22px 70px 4px';
+})
+
+cancelbtn.addEventListener('click',()=>{
+    addproductfm.reset()
+    addnew.innerHTML = `Add a New Product `
+    updateProductCards();
+})
 updateProductCards();
+
