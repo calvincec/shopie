@@ -290,6 +290,8 @@ const deactivateAccount = async(req, res) => {
     try {
         const {UserID} = req.params
         const result = await DB.exec("DisableUserAccount", {UserID})
+
+        console.log(result);
         if(result.returnValue === 0){
             return res.status(200).json({
                 message: "Account disabled succesfully"
@@ -302,6 +304,7 @@ const deactivateAccount = async(req, res) => {
         })
     }
 }
+
 
 
 module.exports = {

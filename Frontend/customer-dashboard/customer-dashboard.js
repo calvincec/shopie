@@ -1,6 +1,6 @@
 const alternateTextElement = document.getElementById("alternateText");
 const alternateTexts = ["Welcome to Shoppie!", "Free delivery", "Genuine Products"];
-const errorElement = document.getElementById('no-products-found');
+const errorElement = document.getElementById('lottie-animation');
 let cartItemCount = 0;
 let currentAlternateTextIndex = 0;
 
@@ -73,7 +73,7 @@ function generateProductCardsmem(productsToDisplay) {
         
             for (let i = 0; i < quantity; i++) {
                 await addProductToCart(product.productId, 1);
-                
+                showToast("Added to Cart!")
             }
         });
         
@@ -149,9 +149,10 @@ searchInput.addEventListener('input', () => {
     generateProductCardsmem(filteredProducts);
 
     if (filteredProducts.length < 1) {
-        errorElement.innerHTML = "No product(s) found";
+        document.getElementById('lottie-animation').style.display = 'block';
+       
     } else {
-        errorElement.innerHTML = "";
+        document.getElementById('lottie-animation').style.display = 'none';
     }
 });
 
@@ -177,6 +178,17 @@ function parseJwt(token) {
 
 function viewProfile(){
     window.location.href = "/Frontend/edit-profile/edit-profile.html"
+}
+
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.innerText = message;
+    toast.style.opacity = 1;
+
+    
+    setTimeout(() => {
+        toast.style.opacity = 0;
+    }, 2000);
 }
 
 updateProductCardsmem();

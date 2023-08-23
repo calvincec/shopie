@@ -1,5 +1,5 @@
 CREATE OR ALTER PROCEDURE UpdateUserProcedure
-    @UserID NVARCHAR(36), -- Assuming UserID is of type UNIQUEIDENTIFIER (UUID)
+    @UserID NVARCHAR(255), 
     @Email NVARCHAR(100) = NULL,
     @PhoneNumber NVARCHAR(20) = NULL
 AS
