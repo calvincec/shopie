@@ -67,8 +67,7 @@ async function updateUserDetails(Email, Phonenumber) {
 
         if (response.ok) {
             console.log("updated succesfully");
-        }
-        else {
+        } else {
             const error = await response.json()
             console.log(error.error);
         }
@@ -78,9 +77,17 @@ async function updateUserDetails(Email, Phonenumber) {
 }
 
 deleteButton.addEventListener('click', () => {
-    disableAccount()
+
+    const confirmation = confirm("Are you sure you want to deactivate your account?");
+    if (confirmation) {
+        disableAccount()
+        logout()
+    } else {
+        return;
+
+    }
 })
-//userRouter.post("/disable-account/:UserID")
+
 async function disableAccount() {
     try {
         const response = await fetch(`http://localhost:4503/users/disable-account/${userID}`, {
@@ -88,15 +95,13 @@ async function disableAccount() {
             headers: {
                 "Content-Type": "application/json"
 
-            }            
+            }
         })
 
-        if(response.ok){
-            console.log("account deleted");
-        }
 
     } catch (error) {
 
+        console.log(error)
     }
 }
 
@@ -131,7 +136,6 @@ function logout() {
     localStorage.clear();
     window.location.href = "/Frontend/welcome.html";
 }
-
 
 
 function parseJwt(token) {

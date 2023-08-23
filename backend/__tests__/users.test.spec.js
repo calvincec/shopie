@@ -79,4 +79,9 @@ describe("Register customers", function () {
         expect(res.status).toHaveBeenCalledWith(201)
         expect(res.json).toHaveBeenCalledWith({message: 'Account successfully registered'});
     });
+
+
+    it('should return an error when user exists', async() => {
+        
+    })
 })
