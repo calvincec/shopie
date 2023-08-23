@@ -73,7 +73,7 @@ function generateProductCardsmem(productsToDisplay) {
         
             for (let i = 0; i < quantity; i++) {
                 await addProductToCart(product.productId, 1);
-                
+                showToast("Added to Cart!")
             }
         });
         
@@ -177,6 +177,17 @@ function parseJwt(token) {
 
 function viewProfile(){
     window.location.href = "/Frontend/edit-profile/edit-profile.html"
+}
+
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.innerText = message;
+    toast.style.opacity = 1;
+
+    
+    setTimeout(() => {
+        toast.style.opacity = 0;
+    }, 2000);
 }
 
 updateProductCardsmem();
