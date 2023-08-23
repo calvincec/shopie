@@ -120,29 +120,30 @@
         </div>
 
         <div class="info" style="color: green;"></div>
-        <div id="productContaineradm">
-            <div class="addproduct">
-                <h2 class="carthead"><span class="addnew">Add a New Product</span> <img
-                        src="/Frontend/Assets/cancel.png" alt="" class="cancelbtn"></h2>
-                <form enctype="multipart/form-data" action="submit_product.php" method="POST" class="addproductfm">
-                    <label for="product-name">Product Name:</label>
-                    <input type="text" id="product-name" name="product-name" required>
-
-                    <label for="product-description">Product Description:</label>
-                    <textarea id="product-description" name="product-description" required></textarea>
-
-                    <label for="product-price">Price:</label>
-                    <input type="number" id="product-price" name="product-price" step="0.01" required>
-
-                    <label for="product-image">Product Image:</label>
-                    <input type="file" id="product-image" name="product-image" accept="image/*" required>
-
-                    <label for="product-stock">Stock:</label>
-                    <input type="number" id="product-stock" name="product-stock" required>
-
-                    <button type="submit" class="btn">Add Product</button>
-                </form>
-            </div>
+        <div  id="productContaineradm">
+                <div class="addproduct" >
+                    <h2 class="carthead"><span class="addnew">Add a New Product</span> <img src="/Frontend/Assets/cancel.png" alt="" class="cancelbtn"></h2>
+                    <form enctype="multipart/form-data" action="submit_product.php" method="POST" class="addproductfm">
+                        <label for="product-name">Product Name:</label>
+                        <input type="text" id="product-name" name="product-name" required>
+            
+                        <label for="product-description">Product Description:</label>
+                        <textarea id="product-description" name="product-description" required></textarea>
+            
+                        <label for="product-price">Price:</label>
+                        <input type="number" id="product-price" name="product-price" step="0.01" required>
+            
+                        <label for="product-image">Product Image:</label>
+                        <!-- <input type="file" id="product-image" name="product-image" accept="image/*" required> -->
+                        <input type="text" id="product-image" name="product-image"  required>
+            
+                        <label for="product-stock">Stock:</label>
+                        <input type="number" id="product-stock" name="product-stock" required>
+            
+                        <div class="msg"></div>
+                        <button type="submit" class="btn">Add Product</button>
+                    </form>
+                </div>
 
 
 
