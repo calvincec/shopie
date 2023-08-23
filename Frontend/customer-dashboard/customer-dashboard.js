@@ -1,6 +1,6 @@
 const alternateTextElement = document.getElementById("alternateText");
 const alternateTexts = ["Welcome to Shoppie!", "Free delivery", "Genuine Products"];
-const errorElement = document.getElementById('no-products-found');
+const errorElement = document.getElementById('lottie-animation');
 let cartItemCount = 0;
 let currentAlternateTextIndex = 0;
 
@@ -149,9 +149,10 @@ searchInput.addEventListener('input', () => {
     generateProductCardsmem(filteredProducts);
 
     if (filteredProducts.length < 1) {
-        errorElement.innerHTML = "No product(s) found";
+        document.getElementById('lottie-animation').style.display = 'block';
+       
     } else {
-        errorElement.innerHTML = "";
+        document.getElementById('lottie-animation').style.display = 'none';
     }
 });
 
