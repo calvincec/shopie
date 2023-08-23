@@ -15,8 +15,6 @@ width: auto;
   margin-top: 20px;
 }
 
-
-
 #checkout-button {
   display: block;
   margin-top: 10px;
@@ -27,10 +25,7 @@ width: auto;
   border-radius: 4px;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-
 }
-
 
     </style>
     <link rel="stylesheet" href="cart.css">
@@ -62,16 +57,17 @@ width: auto;
             <p id="helloMessage"></p>
         </div>
     </div>
+    <h1 style="text-align: center; margin-top: 40px;" >Your Cart</h1>
 
-
-    <h1 style="text-align: center; margin: 40px;" >Your Cart</h1>
-
-    <div class="empty-cart" style="display: none;">
+    <div  class="empty-cart" style="display: none; position: fixed; left: 42%;">
+        
         <lottie-player src="https://lottie.host/79c0a4cc-dbd4-4665-83c8-6169ed8f1abb/6KexGp5mRr.json"
             background=“Transparent” speed="1" style="width: 300px; height: 300px" direction=“1” mode=“normal” loop
             autoplay></lottie-player>
-        <h3>Your cart is empty :(</h3>
+        <h3 style="text-align: center;">Your cart is empty :(</h3>
     </div>
+
+
 
     <div id="notification" class="notification">Item removed from cart!</div>
 
@@ -81,10 +77,6 @@ width: auto;
         <div id="products-container">
             
         </div>
-    
-
-     
-
             <div id="cart-section" style="display: none;">
                 <p>Total Items: <span id="total-items">0</span></p>
                 <p>Total Price: Ksh<span id="total-price">0.00</span></p>

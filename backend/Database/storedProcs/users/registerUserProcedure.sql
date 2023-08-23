@@ -16,6 +16,3 @@ BEGIN
 END;
 
 
-
--- use shopie;
--- select * from Users;

@@ -79,12 +79,16 @@ async function updateUserDetails(Email, Phonenumber) {
 deleteButton.addEventListener('click', () => {
 
     const confirmation = confirm("Are you sure you want to deactivate your account?");
-    if (confirmation) {
-        disableAccount()
-        logout()
-    } else {
-        return;
 
+    console.log(confirmation);
+    if(confirmation){
+            disableAccount()
+            setTimeout(() => {
+                logout();
+            }, 1500)
+    }
+    else {
+        return;
     }
 })
 
@@ -94,9 +98,19 @@ async function disableAccount() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
-
             }
         })
+
+        if(response.ok){
+            console.log("deactivated ok");
+
+            let x = await response.json()
+            console.log(x.message);
+        }
+        else {
+            const errorResponse = await response.json();
+            console.log("Error:", errorResponse);
+        }
 
 
     } catch (error) {
