@@ -114,10 +114,41 @@ function generateProductCards(productsToDisplay) {
             addproduct.style.position = 'absolute'
             addproduct.style.left = 0;
             addproduct.style.right = 0
-            addproduct.style.marginLeft= auto; 
-            addproduct.style.marginRight= auto;
-            
+            addproduct.style.marginLeft= 'auto'; 
+            addproduct.style.marginRight= 'auto';
             addproduct.style.boxShadow = 'rgba(0, 0, 0, 0.56) 0px 22px 70px 4px';
+
+            addproductfm.addEventListener('submit', async(e)=>{
+                e.preventDefault()
+                // const productName = document.querySelector('#product-name')
+                // const productDescription = document.querySelector('#product-description')
+                // const price = document.querySelector('#product-price')
+                const prodimg = document.querySelector('#product-image')
+                // const stock = document.querySelector('#product-stock')
+                const msg = document.querySelector('.msg')
+        
+                const productNam = productName.value
+                const productDesc = productDescription.value 
+                const pric = price.value
+                const prodim = prodimg.value
+                const stoc = stock.value
+                
+                
+                const values = [productNam, productDesc, pric,prodim, stoc, product.productId]
+                const res = await editproduct(values)
+                if (res == "product updated successfully") {
+                    addproductfm.reset();
+                
+                    msg.innerHTML = 'Product updated successfully';
+                    msg.style.color = "green";
+                    msg.style.marginBottom = "10px"
+                
+                    setTimeout(() => {
+                        msg.innerHTML = '';
+                        updateProductCards();
+                    }, 2000);
+                }
+            })
            
         })
     });
@@ -172,6 +203,60 @@ async function deleteproduct(productId){
         return error
     }
 }
+async function newproduct(values){
+    try {
+        const response = await fetch(`http://localhost:4503/product`, {
+        method: "POST",
+        body:JSON.stringify( {
+            productName: values[0],
+            productDescription: values[1],
+            price: values[2],
+            productImage: values[3],
+            stock: values[4]
+        }),
+        headers: {
+            "Content-type": 'application/json'
+        }}) 
+
+        
+        
+        if(response.ok){
+            return "product Added successfully"
+        }
+        else{
+            return "product not added"
+        } 
+    } catch (error) {
+        return error
+    }
+}
+async function editproduct(values){
+    try {
+        const response = await fetch(`http://localhost:4503/product/${values[5]}`, {
+        method: "PUT",
+        body:JSON.stringify( {
+            productName: values[0],
+            productDescription: values[1],
+            price: values[2],
+            productImage: values[3],
+            stock: values[4]
+        }),
+        headers: {
+            "Content-type": 'application/json'
+        }}) 
+
+        
+        
+        if(response.ok){
+            return "product updated successfully"
+        }
+        else{
+            return "product not updated"
+        } 
+    } catch (error) {
+        return error
+    }
+}
   
 eddtoproducts.addEventListener('click',()=>{
     productContaineradm.innerHTML=''
@@ -183,6 +268,38 @@ eddtoproducts.addEventListener('click',()=>{
     addproduct.style.marginLeft= 'auto'; 
     addproduct.style.marginRight= 'auto';
     addproduct.style.boxShadow = 'rgba(0, 0, 0, 0.56) 0px 22px 70px 4px';
+
+    addproductfm.addEventListener('submit', async(e)=>{
+        e.preventDefault()
+        const productName = document.querySelector('#product-name')
+        const productDescription = document.querySelector('#product-description')
+        const price = document.querySelector('#product-price')
+        const prodimg = document.querySelector('#product-image')
+        const stock = document.querySelector('#product-stock')
+        const msg = document.querySelector('.msg')
+
+        const productNam = productName.value
+        const productDesc = productDescription.value 
+        const pric = price.value
+        const prodim = prodimg.value
+        const stoc = stock.value
+
+        const values = [productNam, productDesc, pric,prodim, stoc]
+        const res = await newproduct(values)
+        if (res == "product Added successfully") {
+            addproductfm.reset();
+        
+            msg.innerHTML = 'Product added successfully';
+            msg.style.color = "green";
+            msg.style.marginBottom = "10px"
+        
+            setTimeout(() => {
+                msg.innerHTML = '';
+                updateProductCards();
+            }, 2000);
+        }
+    })
+
 })
 
 cancelbtn.addEventListener('click',()=>{
