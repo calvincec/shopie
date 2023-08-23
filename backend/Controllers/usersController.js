@@ -96,9 +96,8 @@ const getUserDetails = async (req, res) => {
 const loginUser = async (req, res) => {
     try {
 
-        const { Email, Password } = req.body
-        const user = await DB.exec("UserLoginProcedure", { Email })
-
+        const { Email, Password } = req.body;
+        const user = await DB.exec("UserLoginProcedure", { Email });
 
         if (user.recordset.length === 0) {
             return res.status(404).json({
@@ -106,6 +105,11 @@ const loginUser = async (req, res) => {
             });
         }
 
+        if (!user.recordset[0].isActive) {
+            return res.status(401).json({
+                error: 'Account is deactivated. Please contact support.',
+            });
+        }
         const hashedPassword = user.recordset[0].Password;
         const passwordMatch = await bcrypt.compare(Password, hashedPassword);
 
@@ -282,17 +286,22 @@ module.exports = {
 };
 
 
-// const deactivateAccount = async(req, res) => {
-//     try {
-//         const {UserID} = req.body
-//         const result =
-//     } catch (error) {
-//         console.log(error);
-//         return res.status(500).jsson({
-//             error: error
-//         })
-//     }
-// }
+const deactivateAccount = async(req, res) => {
+    try {
+        const {UserID} = req.params
+        const result = await DB.exec("DisableUserAccount", {UserID})
+        if(result.returnValue === 0){
+            return res.status(200).json({
+                message: "Account disabled succesfully"
+            })
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            error: error
+        })
+    }
+}
 
 
 module.exports = {
@@ -302,5 +311,6 @@ module.exports = {
     resetPassword,
     initiatePasswordReset,
     getAllCustomers,
-    updateProfile
+    updateProfile,
+    deactivateAccount
 }

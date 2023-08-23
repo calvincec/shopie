@@ -3,5 +3,6 @@ AS
 BEGIN
     SELECT *
     FROM Users
-    WHERE isAdmin = 0;
+    WHERE isAdmin = 0
+      AND isActive = 1;
 END;

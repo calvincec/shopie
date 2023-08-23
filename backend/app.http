@@ -108,7 +108,9 @@ Content-Type: application/json
     "PhoneNumber": "123456789"
 }
 
+### Deactivate account
 
+POST http://localhost:4503/users/disable-account/f3b4ebe7-f121-4b67-a58d-1f1c8f900f59
 # EXEC UpdateUserProcedure
 #     @UserID = 'f3b4ebe7-f121-4b67-a58d-1f1c8f900f59',
 #     @Email = 'Kevin.mathenge@mail.com',

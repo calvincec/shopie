@@ -12,7 +12,9 @@ CREATE TABLE Users
     isAdmin     BIT DEFAULT 0
 )
 
+use shopie;
 select * from Users
+
 
 SELECT *
 FROM Users;

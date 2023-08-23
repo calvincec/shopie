@@ -23,44 +23,83 @@ document.addEventListener("DOMContentLoaded", function () {
             $(".dropdown-content").hide();
         }
     });
-
-
-
-
-    editButton.addEventListener("click", () => {
-        emailField.innerHTML = `<input type="email" value="${emailField.innerText}">`;
-        numberField.innerHTML = `<input type="number" value="${numberField.innerText}">`;
-        editButton.style.display = "none";
-        deleteButton.style.display = "none";
-        saveButton.style.display = "block";
-    });
-
-    saveButton.addEventListener("click", async () => {
-        const newEmail = emailField.querySelector("input").value;
-        const newNumber = numberField.querySelector("input").value;
-
-        // Make API call to update data here
-        // Handle success and error responses
-
-        // Update the UI
-        emailField.innerHTML = newEmail;
-        numberField.innerHTML = newNumber;
-        editButton.style.display = "block";
-        deleteButton.style.display = "block";
-        saveButton.style.display = "none";
-    });
-
-
-
-    ; // You might need to define this function if it's not included in the provided code.
-
-    // Add any other functions or code you have here
 });
 
-function logout() {
-    localStorage.clear();
-    window.location.href = "/Frontend/welcome.html";
+editButton.addEventListener("click", () => {
+    emailField.innerHTML = `<input type="email" value="${emailField.innerText}">`;
+    numberField.innerHTML = `<input type="number" value="${numberField.innerText}">`;
+
+
+    editButton.style.display = "none";
+    deleteButton.style.display = "none";
+    saveButton.style.display = "block";
+});
+
+saveButton.addEventListener("click", async () => {
+    const newEmail = emailField.querySelector("input").value;
+    const newNumber = numberField.querySelector("input").value;
+
+
+    updateUserDetails(newEmail, newNumber)
+    // Make API call to update data here
+    // Handle success and error responses
+
+    // Update the UI
+    emailField.innerHTML = newEmail;
+    numberField.innerHTML = newNumber;
+    editButton.style.display = "block";
+    deleteButton.style.display = "block";
+    saveButton.style.display = "none";
+});
+
+async function updateUserDetails(Email, Phonenumber) {
+    try {
+        const response = await fetch(`http://localhost:4503/users/update-information/${userID}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                Email: Email,
+                Phonenumber: Phonenumber
+            })
+        })
+
+        if (response.ok) {
+            console.log("updated succesfully");
+        }
+        else {
+            const error = await response.json()
+            console.log(error.error);
+        }
+    } catch (error) {
+
+    }
 }
+
+deleteButton.addEventListener('click', () => {
+    disableAccount()
+})
+//userRouter.post("/disable-account/:UserID")
+async function disableAccount() {
+    try {
+        const response = await fetch(`http://localhost:4503/users/disable-account/${userID}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+
+            }            
+        })
+
+        if(response.ok){
+            console.log("account deleted");
+        }
+
+    } catch (error) {
+
+    }
+}
+
 
 async function fetchUserDetails() {
 
@@ -87,6 +126,13 @@ async function fetchUserDetails() {
         console.log(error);
     }
 }
+
+function logout() {
+    localStorage.clear();
+    window.location.href = "/Frontend/welcome.html";
+}
+
+
 
 function parseJwt(token) {
     try {
