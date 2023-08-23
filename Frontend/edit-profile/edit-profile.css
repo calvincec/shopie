@@ -122,20 +122,23 @@ span.psw {
 .container {
     font-family: Arial, sans-serif;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 30vh;
     margin: 0;
+    width: auto;
 
   }
   #profile {
     width: 400px;
-    padding: 20px;
+    padding: 40px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     background-color: white;
-    height: auto;
+    margin-left: 100px;
+    margin-right: 0px;
     margin-top: 20px;
     
   }
@@ -169,3 +172,25 @@ span.psw {
   button:hover {
     background-color: #0056b3;
   }
+
+  /* Default styles for all screen sizes */
+
+/* Media query for screens smaller than 768px (tablets and mobile devices) */
+@media screen and (max-width: 768px) {
+  .top-nav {
+    flex-direction: column; /* Adjust the layout for smaller screens */
+  }
+  
+  /* Adjust other styles as needed */
+}
+
+/* Media query for screens smaller than 576px (most mobile devices) */
+@media screen and (max-width: 576px) {
+  /* Further adjustments for smaller screens */
+  .profile {
+    width: 100%; /* Make the profile section take full width */
+    padding: 20px; /* Adjust padding for smaller screens */
+  }
+
+  /* Adjust other styles as needed */
+}

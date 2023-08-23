@@ -24,7 +24,7 @@
             <div class="dropdown">
                 <span class="material-symbols-outlined clickable">person</span>
                 <div class="dropdown-content">
-                    <a href="/Frontend/">View Profile</a>
+                    <a href="/Frontend/edit-profile/edit-profile.html">View Profile</a>
                     <a id="user-logout" onclick="logout()">Logout</a>
                 </div>
             </div>
@@ -35,13 +35,18 @@
 
     </div>
 
-    <h2 style="text-align: center; margin-top: 20px;" >Edit your details below</h2>
+    <h2 style="text-align: center; margin-top: 20px; margin-bottom: 20px;" >Edit your details below</h2>
     <div class="container">
+
+        <div class="image">
+            <img height="200px" style="border-radius: 50%;" src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1692775752~exp=1692776352~hmac=a352ada88356330187831c134fdb41bcf5af53a84cadcd87ec09fb7a5db5d0a4" alt="" srcset="">
+        </div>
         <div class="profile" id="profile">
             <p> <b>Name:</b> <span id="name">John Doe</span></p>
-            <p>Email: <span id="email">john@example.com</span></p>
-            <p>Phone Number: <span id="phone-number">254715145345</span></p>
+            <p><b>Email: </b><span id="email">john@example.com</span></p>
+            <p> <b>Phone Number: </b><span id="phone-number">254715145345</span></p>
             <button id="editButton">Edit</button>
+            <button id="delete-profile" style="background-color: red;">Deactivate Account</button>
             <button id="saveButton" style="display: none;">Save</button>
         </div>
 
