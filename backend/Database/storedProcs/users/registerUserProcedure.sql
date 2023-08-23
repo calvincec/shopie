@@ -17,5 +17,5 @@ END;
 
 
 
-use shopie;
-select * from Users;
+-- use shopie;
+-- select * from Users;
