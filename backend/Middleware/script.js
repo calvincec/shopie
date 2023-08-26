@@ -45,6 +45,9 @@ const validateResetPassword = (req, res, next) => {
             error: "Invalid email format"
         })
     }
+
+
+next()
 }
 
 const validateEmailFormat = (email) => {

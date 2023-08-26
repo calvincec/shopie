@@ -108,6 +108,15 @@ Content-Type: application/json
     "PhoneNumber": "123456789"
 }
 
+
+### Rset passsword
+POST http://localhost:4503/users/password-reset-request
+Content-Type: application/json
+
+{
+   "Email": "kev@mail.com"
+}
+
 ### Deactivate account
 
 POST http://localhost:4503/users/disable-account/172823eb-4088-4c1c-961e-62ce515bf8f9

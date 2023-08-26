@@ -143,6 +143,7 @@ const loginUser = async (req, res) => {
 }
 const initiatePasswordReset = async (req, res) => {
     try {
+
         const { Email } = req.body;
 
         const user = await DB.exec("CheckIfUserExistsProcedure", { Email });
@@ -152,6 +153,7 @@ const initiatePasswordReset = async (req, res) => {
             });
         } else {
 
+         
             const resetToken = v4();
 
             const result = await DB.exec('StoreResetTokenProcedure', { Email, ResetToken: resetToken });
@@ -162,10 +164,59 @@ const initiatePasswordReset = async (req, res) => {
                     to: Email,
                     subject: 'Password Reset Request',
                     html: `
-                    <p>Hello!</p>
-                    <p>We received a request to reset your password. Please use the following link to reset your password:</p>
-                    <a href="http://127.0.0.1:5500/Frontend/reset-password.html?token=${resetToken}">Reset Password</a>
-                    <p>If you did not request a password reset, you can ignore this email.</p>
+                    <html>
+                    <head>
+                        <style>
+                            body {
+                                font-family: Arial, sans-serif;
+                                margin: 0;
+                                padding: 0;
+                            }
+                            
+                            .container {
+                                max-width: 600px;
+                                margin: 0 auto;
+                                padding: 20px;
+                                border: 1px solid #e0e0e0;
+                                border-radius: 5px;
+                                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                            }
+                            
+                            .content {
+                                margin-top: 20px;
+                                text-align: center;
+                            }
+                            
+                            .button {
+                                display: inline-block;
+                                background-color: #007bff;
+                                color: #fff;
+                                padding: 10px 20px;
+                                border-radius: 5px;
+                                text-decoration: none;
+                            }
+                            
+                            .footer {
+                                margin-top: 20px;
+                                text-align: center;
+                                color: #888;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="container">
+                            <div class="content">
+                                <p>Hello!</p>
+                                <p>We received a request to reset your password. Please use the following link to reset your password:</p>
+                                <p><a class="button" href="http://127.0.0.1:5500/Frontend/reset-password.html?token=${resetToken}">Reset Password</a></p>
+                                <p>If you did not request a password reset, you can ignore this email.</p>
+                            </div>
+                            <div class="footer">
+                                <p>Best regards,<br>Your Company Name</p>
+                            </div>
+                        </div>
+                    </body>
+                    </html> 
                 `,
                 };
 
