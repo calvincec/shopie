@@ -9,7 +9,7 @@ const eddtoproducts = document.querySelector('#add-products')
 const cancelbtn = document.querySelector('.cancelbtn')
 const addproductfm = document.querySelector('.addproductfm')
 const addnew = document.querySelector('.addnew')
-
+const updatebtn = document.querySelector('.btn')
 
 
 
@@ -96,6 +96,8 @@ function generateProductCards(productsToDisplay) {
             e.preventDefault()
             productContaineradm.innerHTML=""
             productContaineradm.appendChild(addproduct)
+            updatebtn.innerHTML = "Update the product"
+            addnew.innerHTML = `Updating The Product `
             const updatedetails = [product.productName, product.productDescription,product.price, product.stock]
             
             
@@ -108,7 +110,7 @@ function generateProductCards(productsToDisplay) {
             productDescription.value = updatedetails[1]
             price.value = updatedetails[2]
             stock.value = updatedetails[3]
-            addnew.innerHTML = `Updating The Product `
+            // addnew.innerHTML = `Updating The Product `
 
             addproduct.style.display = 'block'
             addproduct.style.position = 'absolute'
@@ -145,8 +147,9 @@ function generateProductCards(productsToDisplay) {
                 
                     setTimeout(() => {
                         msg.innerHTML = '';
-                        updateProductCards();
-                    }, 2000);
+                        // updateProductCards();
+                        location.reload()
+                    }, 1000);
                 }
             })
            
@@ -217,9 +220,7 @@ async function newproduct(values){
         headers: {
             "Content-type": 'application/json'
         }}) 
-
-        
-        
+   
         if(response.ok){
             return "product Added successfully"
         }
@@ -292,11 +293,15 @@ eddtoproducts.addEventListener('click',()=>{
             msg.innerHTML = 'Product added successfully';
             msg.style.color = "green";
             msg.style.marginBottom = "10px"
+            
         
             setTimeout(() => {
                 msg.innerHTML = '';
-                updateProductCards();
-            }, 2000);
+                productContaineradm.innerHTML=''
+                location.reload()
+                // updateProductCards();
+                
+            }, 1000);
         }
     })
 
