@@ -159,6 +159,10 @@
     cursor: pointer;
   }
 
+  #lottie-animation{
+    margin-left: 41%;
+ }
+
 .add-to-cart{
     padding: 10px;
 }

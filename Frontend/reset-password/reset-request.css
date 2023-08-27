@@ -1,0 +1,141 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+body {
+  height: 100vh;
+}
+
+
+.top-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: #007bff;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#search {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 300px;
+  margin-left: 10px;
+}
+
+#search-button {
+  padding: 10px 20px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+#search-button:hover {
+  background-color: #0056b3;
+}
+
+.alternating-menu {
+  width: 18%;
+}
+.alternating-menu p {
+  margin-left: 40px;
+  margin-top: 20px;
+  font-size: 24px;
+  color: white;
+  font-weight: 900;
+}
+.menus {
+  padding: 20px;
+}
+.menus span {
+  margin-right: 20px;
+}
+
+.menus :hover {
+  cursor: pointer;
+}
+
+#person {
+  color: white;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+    margin-top: 25vh;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.9); 
+  width: 30%;
+    border-radius: 10px;
+    text-align: center;
+  padding: 20px;
+  background-color: white;
+}
+
+input{
+    padding: 8px;
+    border-radius: 05px;
+  
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background-color: white;
+}
+
+button{
+    padding: 8px;
+    background-color: #007BFF;
+    border-radius: 05px;
+    color: white;
+}
+form{
+    display: flex;
+    flex-direction: column;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown a:hover {background-color: #007bff;}
+  
+  .show {display: block;}
+
+  .dropdown:hover{
+    cursor: pointer;
+  }
+#person:hover {
+  cursor: pointer;
+}
+#shopping-cart:hover {
+  cursor: pointer;
+}
