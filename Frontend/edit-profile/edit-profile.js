@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 editButton.addEventListener("click", () => {
-    emailField.innerHTML = `<input type="email" value="${emailField.innerText}">`;
-    numberField.innerHTML = `<input type="number" value="${numberField.innerText}">`;
+    emailField.innerHTML = `<input id = "emailInput"type="email" value="${emailField.innerText}">`;
+    numberField.innerHTML = `<input id = "numberInput type="number" value="${numberField.innerText}">`;
 
 
     editButton.style.display = "none";

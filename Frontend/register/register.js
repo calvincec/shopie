@@ -81,6 +81,22 @@ function validatePhoneNumber(phoneNumber) {
     return phoneNumberPattern.test(phoneNumber);
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    $(".dropdown").click(function (event) {
+        event.stopPropagation();
+        $(this).find(".dropdown-content").toggle();
+    });
+
+    // Hide the dropdown content on DOM content load
+    $(".dropdown-content").hide();
+
+    $(document).click(function (event) {
+        if (!$(event.target).closest(".dropdown").length) {
+            $(".dropdown-content").hide();
+        }
+    });
+});
+
 
 
 

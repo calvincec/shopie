@@ -78,6 +78,7 @@ function generateProductCardsmem(productsToDisplay) {
         });
         
         const productStock = document.createElement("p");
+        productStock.className = 'product-stock'
         productStock.style.marginTop = "15px"
         productStock.style.fontStyle = "italic";
 
