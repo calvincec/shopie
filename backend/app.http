@@ -72,10 +72,10 @@ POST http://localhost:4503/users/register
 Content-Type: application/json
 
 {
-   "UserName": "Calvince Ndemo",
-   "Email": "calyndemo16@gmail.com",
+   "UserName": "Max Githinji",
+   "Email": "max@gmail.com",
    "Password": "12345678",
-   "PhoneNumber": "254726080405",
+   "PhoneNumber": "254726023405",
    "isActive": 1,
    "isAdmin": 1
 

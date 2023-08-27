@@ -3,7 +3,7 @@ describe('Navigate to other pages', () => {
     cy.visit('http://127.0.0.1:5500/Frontend/welcome.html')
     cy.get('#person-icon').click()
     cy.get('#user-login').click()
-    cy.url().should('eq','http://127.0.0.1:5500/Frontend/login/login.html')
+    cy.url().should('eq', 'http://127.0.0.1:5500/Frontend/login/login.html')
   })
 
 
@@ -21,14 +21,14 @@ describe('diplay products', () => {
     cy.visit('http://127.0.0.1:5500/Frontend/welcome.html')
     cy.get('#search').type('xiaomi')
     cy.get('#lottie-animation')
-    .should('be.visible')
+      .should('be.visible')
   })
 
-it('hides animation if search has results', () => {
-  cy.visit('http://127.0.0.1:5500/Frontend/welcome.html')
-  cy.get('#search').type('vitro')
-  cy.get('#lottie-animation')
-  .should('not.be.visible')
-})
+  it('hides animation if search has results', () => {
+    cy.visit('http://127.0.0.1:5500/Frontend/welcome.html')
+    cy.get('#search').type('vitro')
+    cy.get('#lottie-animation')
+      .should('not.be.visible')
+  })
 
 })

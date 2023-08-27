@@ -71,7 +71,7 @@
 
         const alternateTextElement = document.getElementById("alternateText");
         const alternateTexts = ["Welcome to Shoppie!", "Free delivery", "Genuine Products"];
-      const messageElement = document.getElementById("message")
+        const messageElement = document.getElementById("message")
         let currentAlternateTextIndex = 0;
 
 
@@ -89,12 +89,12 @@
 
         resetRequestForm.addEventListener('submit', async (event) => {
             event.preventDefault();
-            
+
             const email = document.getElementById('email').value;
 
 
             try {
-            
+
                 const response = await fetch('http://localhost:4503/users/password-reset-request', {
                     method: 'POST',
                     headers: {
@@ -105,7 +105,7 @@
 
                 const data = await response.json();
 
-               
+
                 if (response.status === 200) {
 
                     messageElement.innerHTML = data.message
@@ -113,7 +113,10 @@
                     messageElement.style.textAlign = "center"
                     messageElement.style.fontSize = "12px"
 
-                    window.location.href = "/Frontend/login/login.html"
+                    setTimeout(() => {
+                        window.location.href = "/Frontend/login/login.html"
+                    }, 2000);
+                   
 
                 } else {
                     messageElement.innerHTML = data.error
