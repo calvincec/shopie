@@ -208,7 +208,7 @@ const initiatePasswordReset = async (req, res) => {
                             <div class="content">
                                 <p>Hello!</p>
                                 <p>We received a request to reset your password. Please use the following link to reset your password:</p>
-                                <p><a class="button" href="http://127.0.0.1:5500/Frontend/reset-password.html?token=${resetToken}">Reset Password</a></p>
+                                <p><a class="button" href="http://127.0.0.1:5500/Frontend/reset-password/reset-password.html?token=${resetToken}">Reset Password</a></p>
                                 <p>If you did not request a password reset, you can ignore this email.</p>
                             </div>
                             <div class="footer">
@@ -255,7 +255,7 @@ const resetPassword = async (req, res) => {
         const userMessageOptions = {
             from: process.env.ADMIN_EMAIL,
             to: Email,
-            subject: 'Account Registration',
+            subject: 'Password Reset',
             html: `
         <div style="font-family: Arial, sans-serif; background-color: #f7f7f7; padding: 20px;">
             <h2  style="color: #333333; text-align: center;">Hello ${UserName},</h2>
@@ -273,8 +273,6 @@ const resetPassword = async (req, res) => {
 
             await sendMail(userMessageOptions)
             return res.status(200).json({
-
-
                 message: 'Password reset successful.',
             });
 

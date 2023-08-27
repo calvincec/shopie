@@ -18,6 +18,24 @@ const validateRegistration = (req, res, next) => {
 }
 
 
+const validateNewPassword = (req, res, next) => {
+    const {NewPassword} = req.body
+
+    if(!NewPassword){
+        return res.status(400).json({
+            error: "Password cannot be blank"
+        })
+    }
+
+    if(NewPassword.length<6){
+        return res.status(400).json({
+            error: "Password cannot be less than 6 characters"
+        })
+    }
+
+    next()
+}
+
 const validateLogin = (req, res, next) => {
     const {Email, Password} = req.body
     if(!Email||!Password){
@@ -59,5 +77,6 @@ const validateEmailFormat = (email) => {
 module.exports = {
     validateRegistration,
     validateLogin,
-    validateResetPassword
+    validateResetPassword,
+    validateNewPassword
 }
