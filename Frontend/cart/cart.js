@@ -58,6 +58,7 @@ async function updateProductCards() {
 
 function generateProductCards(products) {
     cartItemsContainer.innerHTML = ""
+    
     products.forEach(product => {
         const productCard = document.createElement("div");
         productCard.classList.add("product-card");
@@ -117,6 +118,7 @@ function generateProductCards(products) {
             }
         });
        
+        totalItemsElement.innerText  = products.length
         productCard.appendChild(productImageContainer)
      //   productCard.appendChild(productTitle)
         productCard.appendChild(productDetails)
