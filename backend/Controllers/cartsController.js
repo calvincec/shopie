@@ -7,7 +7,7 @@ const { createcartTable } = require('../Database/Tables/createTables')
 
 const addToCart = async (req,res)=>{
     try {
-        createcartTable()
+        // createcartTable()
         const cartId = v4()
         const UserID = req.params.UserID
         const {productId, orderNo} = req.body
