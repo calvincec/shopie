@@ -19,14 +19,14 @@ describe('Navigate to other pages', () => {
 describe('diplay products', () => {
   it('shows animation when no results are found on search', () => {
     cy.visit('http://127.0.0.1:5500/Frontend/welcome.html')
-    cy.get('#search').type('xiaomi')
+    cy.get('#search').type('pe')
     cy.get('#lottie-animation')
       .should('be.visible')
   })
 
   it('hides animation if search has results', () => {
     cy.visit('http://127.0.0.1:5500/Frontend/welcome.html')
-    cy.get('#search').type('vitro')
+    cy.get('#search').type('t')
     cy.get('#lottie-animation')
       .should('not.be.visible')
   })

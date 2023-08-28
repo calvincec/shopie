@@ -98,39 +98,6 @@ describe('getting all products', ()=>{
     })
 })
 
-// describe('getting one product', ()=>{
-//     it("should get one product successfully", async()=>{
-//         const prodid = 'sryiuaraw1234'
-//         const mockProduct = {
-//             productId: "3c986216-b547-4162-8daf-92188a800c42",
-//             productName: "sic",
-//             productDescription: "ddsd",
-//             price: 43,
-//             productImage: "http://res.cloudinary.com/dzuzy670c/image/upload/v1693052223/cfmhsrpabzelpfwatrvd.jpg",
-//             stock: 45
-//           }
-
-//         const req = {
-//             params: {
-//                 id: prodid
-//             }
-//         }
-
-//         jest.spyOn(mssql, "connect").mockResolvedValueOnce({
-//             request: jest.fn().mockReturnThis(),
-//             input: jest.fn().mockReturnThis(),
-//             execute: jest.fn().mockResolvedValueOnce({
-//                 recordset: [mockProduct]
-                
-//             })
-//         })
-
-//         await getOneProduct(req, res)
-
-//         // expect(res.status).toHaveBeenCalledWith(200)
-//         expect(res.json).toHaveBeenCalledWith({product: [mockProduct]})   
-//     })
-// })
 
 
 describe('Updating a product', ()=>{

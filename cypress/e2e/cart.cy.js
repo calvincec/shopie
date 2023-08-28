@@ -1,7 +1,7 @@
 describe('template spec', () => {
   beforeEach(() => {
     cy.visit('http://127.0.0.1:5500/Frontend/login/login.html')
-    cy.get('input#email').type('kevoooo@icloud.com');
+    cy.get('input#email').type('fonani9890@hainals.com');
     cy.get('input#password').type('12345678');
     cy.get('form#form-login').submit();
     cy.get('#shopping-cart').click();

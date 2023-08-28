@@ -59,7 +59,7 @@ try {
     .execute('getOneProjectProc')
 
     if(result.rowsAffected[0] == 1){
-        return res.json({
+        return res.status(200).json({
             product: result.recordset
     })  
     }else{

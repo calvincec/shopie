@@ -165,10 +165,10 @@ function generateProductCards(productsToDisplay) {
                             msg.style.marginBottom = "10px"
                         
                             setTimeout(() => {
-                                msg.innerHTML = '';
+                                // msg.innerHTML = '';
                                 // updateProductCards();
                                 location.reload()
-                            }, 1000);
+                            }, 2000);
                         }
                     })
 
@@ -180,6 +180,7 @@ function generateProductCards(productsToDisplay) {
            
         })
     });
+
 }
 
 async function fetchProducts() {

@@ -16,6 +16,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 #search {
@@ -236,3 +237,22 @@ span.psw {
 #lottie-animation{
   margin-left: 45%;
  }
+
+ @media (max-width: 311px) {
+  #search{
+    width: 50%;
+  }
+  #search-button{
+    width: 50%;
+    height: 40px;
+    font-size: small;
+  }
+  .menus{
+    transform: translate(110px,-150px);
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+  }
+  
+  
+}
