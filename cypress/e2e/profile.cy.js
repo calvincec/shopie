@@ -2,7 +2,7 @@ describe('Edit Profile Page', () => {
 
     beforeEach(() => {
       cy.visit('http://127.0.0.1:5500/Frontend/login/login.html')
-      cy.get('input#email').type('newemail@example.com');
+      cy.get('input#email').type('fonani9890@hainals.com');
       cy.get('input#password').type('12345678');
       cy.get('form#form-login').submit();
       cy.get('#person-icon').click()

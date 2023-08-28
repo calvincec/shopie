@@ -30,8 +30,7 @@ const addToCart = async (req,res)=>{
         } 
         
     } catch (error) {
-        console.log(error);
-        // return res.status(400).json({Error: error})
+        
         return res.status(400).json({Error: "The product does not exist in our records"})
     }
 }
@@ -53,7 +52,7 @@ const userViewCart = async(req, res)=>{
                 sum = sum + arr[el].price
             }
             
-            return res.json({
+            return res.status(200).json({
                 products: result.recordset,
                 totalPrice: sum
         })  

@@ -17,7 +17,7 @@ GET http://localhost:4503/product/all
 Content-Type: application/json
 
 ###Get one product
-GET http://localhost:4503/product/one/3c986216-b547-4162-8daf-92188a800c42
+GET http://localhost:4503/product/one/09a29890-64a7-473a-9b48-1761eff6bf7e
 
 
 ###Update product
@@ -51,7 +51,7 @@ Content-Type: application/json
 
 
 ###user view all products in cart
-GET  http://localhost:4503/cart/view/d7abc609-b651-404d-81a1-8d6bf5c1855c
+GET  http://localhost:4503/cart/view/b568c57d-be19-4ad1-9033-ec69bc75b15b
 
 ###user remove item from cart
 DELETE http://localhost:4503/cart/722e4d88-b2e8-4cc3-b8c8-6b1ad7433bd1
