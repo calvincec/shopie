@@ -22,7 +22,7 @@
     width: calc(16.666% - 20px);
     box-sizing: border-box;
     text-align: center;
-    height: 450px;
+   height: 500px;
   }
   .product-cardadm img {
     max-width: 100%;

@@ -41,7 +41,7 @@ const registerUser = async (req, res) => {
         <p style="text-align: center;">Welcome to Shoppie!</p>
         <p style="text-align: center;">This is to inform you that your account has been successfully created.</p>
    
-                <p style="text-align: center; ">Welcome aboard!</p>
+               
                 <p style="text-align: center; ">If you have any questions or need assistance, feel free to contact us.</p>
                 <p style="text-align: center; ">Best regards,</p>
                 <p style="text-align: center; ">The Shoppie Team</p>
@@ -50,9 +50,9 @@ const registerUser = async (req, res) => {
     `,
             };
 
-            //       await sendMail(userMessageOptions)
+            await sendMail(userMessageOptions)
             return res.status(201).json({
-                message: `Account succesfully created.`
+                message: `Account successfully created.`
             })
         } else {
             return res.status(500).json({ error: 'Registration failed' });
@@ -107,7 +107,7 @@ const loginUser = async (req, res) => {
 
         if (!user.recordset[0].isActive) {
             return res.status(401).json({
-                error: 'Account is deactivated. Please contact support.',
+                error: 'Account is deactivated. Please contact support for reactivation.',
             });
         }
         const hashedPassword = user.recordset[0].Password;
@@ -254,7 +254,7 @@ const resetPassword = async (req, res) => {
 
         const users = userResult.recordset;
 
- 
+
 
         const mailOptions = {
             from: process.env.ADMIN_EMAIL,
@@ -315,20 +315,20 @@ const resetPassword = async (req, res) => {
             </html> 
         `,
         };
-            
-            if (result.returnValue === 0) {
 
-                await sendMail(mailOptions)
-                return res.status(200).json({
-                    message: 'Password reset successful.',
-                });
+        if (result.returnValue === 0) {
+
+            await sendMail(mailOptions)
+            return res.status(200).json({
+                message: 'Password reset successful.',
+            });
 
 
-            } else {
-                return res.status(400).json({
-                    error: 'Password reset failed. Invalid token or password.',
-                });
-            }
+        } else {
+            return res.status(400).json({
+                error: 'Password reset failed. Invalid token or password.',
+            });
+        }
     } catch (error) {
         console.log(error);
         return res.status(500).json({
@@ -377,11 +377,6 @@ const updateProfile = async (req, res) => {
     }
 };
 
-module.exports = {
-    updateProfile
-};
-
-
 const deactivateAccount = async (req, res) => {
     try {
         const { UserID } = req.params
@@ -411,5 +406,6 @@ module.exports = {
     initiatePasswordReset,
     getAllCustomers,
     updateProfile,
-    deactivateAccount
+    deactivateAccount,
+    updateProfile
 }
