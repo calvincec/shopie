@@ -52,7 +52,7 @@ const registerUser = async (req, res) => {
 
             await sendMail(userMessageOptions)
             return res.status(201).json({
-                message: `Account succesfully created.`
+                message: `Account successfully created.`
             })
         } else {
             return res.status(500).json({ error: 'Registration failed' });

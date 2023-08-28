@@ -54,12 +54,41 @@ describe("Register customers", function () {
         jest.restoreAllMocks();
     });
 
+    it('should successfully create a user', async () => {
+        const req = {
+            body: {
+                UserName: 'kevin mathenge',
+                Email: 'kelvinian87@gmail.com',
+                Password: 'password123',
+                PhoneNumber: '1234567890',
+                isActive: 1,
+                isAdmin:1
+            }
+        };
+
+        const res = {
+            status: jest.fn(() => res),
+            json: jest.fn()
+        };
+
+        const mockExistingUser = { recordset: [] };
+        const mockDBResult = { returnValue: 0 };
+
+        DB.exec.mockResolvedValueOnce(mockExistingUser);
+        DB.exec.mockResolvedValueOnce(mockDBResult)
+     
+       await registerUser(req, res);
+
+       expect(res.status).toHaveBeenCalledWith(201)
+        expect(res.json).toHaveBeenCalledWith({ message: 'Account successfully created.' });
+       expect(DB.exec).toHaveBeenNthCalledWith(1,'CheckIfUserExistsProcedure', { Email: req.body.Email } )
+
+        
+    });
     it("should throw an error when registration fails", async () => {
         const req = {
             body: {
                 UserName: "Max Githinji",
-                // Email: "max@gmail.com",
-                // Password: "12345678",
                 PhoneNumber: "254726023405",
                 isActive: 1,
                 isAdmin: 1

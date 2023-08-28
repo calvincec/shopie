@@ -19,27 +19,27 @@ describe('Edit Profile Page', () => {
 
   });
 
-//   it('should edit user profile details', () => {
+  it('should edit user profile details', () => {
     
-//     cy.get('#editButton').click();
+    cy.get('#editButton').click();
 
-//     cy.get('#email input').should('be.visible');
-//     cy.get('#phone-number input').should('be.visible');
+    cy.get('#email input').should('be.visible');
+    cy.get('#phone-number input').should('be.visible');
 
-//     cy.get('#email input').clear().type('moph2@mail.com');
-//     cy.get('#phone-number input').clear().type('12345678');
+    cy.get('#email input').clear().type('moph2@mail.com');
+    cy.get('#phone-number input').clear().type('12345678');
 
-//     cy.get('#saveButton').click();
+    cy.get('#saveButton').click();
 
-//     cy.get('#email').should('contain', 'moph2@mail.com');
-//     cy.get('#phone-number').should('contain', '12345678');
-// });
-// it('should deactivate account redirect user to homescreen', () => {
-//   cy.get('#delete-profile').click();
-//   cy.on('window:confirm', () => true);
+    cy.get('#email').should('contain', 'moph2@mail.com');
+    cy.get('#phone-number').should('contain', '12345678');
+});
+it('should deactivate account redirect user to homescreen', () => {
+  cy.get('#delete-profile').click();
+  cy.on('window:confirm', () => true);
 
 
-//   cy.url().should('include', '/Frontend/welcome.html');
-// });
+  cy.url().should('include', '/Frontend/welcome.html');
+});
 
 });
