@@ -13,6 +13,7 @@ CREATE TABLE Users
 )
 
 use shopie;
+select * from products;
 select * from Users
 
 
@@ -21,6 +22,7 @@ FROM Users;
 create database shopie;
 use shopie;
 drop table cart
+drop table Users;
 CREATE TABLE cart
 (
     cartId    VARCHAR(200) PRIMARY KEY,

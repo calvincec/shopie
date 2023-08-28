@@ -4,11 +4,11 @@ POST http://localhost:4503/product
 Content-Type: application/json
 
 {
-   "productName": "clothed piece phone wear",
-   "productDescription": "Fashion 6Pcs Soft Cotton Checked Men's Boxers – Multicolor",
-   "price": 650,
-   "productImage": "https://ke.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/91/432928/1.jpg?7106",
-   "stock": 198
+     "productName": "LG V50 ThinQ",
+   "productDescription": "LG V50 ThinQ",
+   "price": 25990,
+   "productImage": "https://ke.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/69/315184/1.jpg?2778",
+   "stock": 49
 }
 
 
@@ -26,11 +26,11 @@ Content-Type: application/json
 
 
 {
-   "productName": "Steel door",
-   "productDescription": "To prevent thieves",
-   "price": 400000000,
-   "productImage": "https://images.pexels.com/photos/7054511/pexels-photo-7054511.jpeg?auto=compress&cs=tinysrgb&w=600",
-   "stock": 4543
+   "productName": "Oraimo Headsets",
+   "productDescription": "Rock Stereo Bass Super Long Playtime IPX5 Waterproof",
+   "price": 2200,
+   "productImage": "https://ke.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/71/486778/1.jpg?8858",
+   "stock": 454
 }
 
 ###Delete product
@@ -72,10 +72,10 @@ POST http://localhost:4503/users/register
 Content-Type: application/json
 
 {
-   "UserName": "Max Githinji",
-   "Email": "max@gmail.com",
+   "UserName": "User Kevin",
+   "Email": "kevinmathenge17@gmail.com",
    "Password": "12345678",
-   "PhoneNumber": "254726023405",
+   "PhoneNumber": "254726023495",
    "isActive": 1,
    "isAdmin": 1
 

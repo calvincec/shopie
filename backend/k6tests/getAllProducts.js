@@ -1,13 +1,24 @@
-import { sleep } from 'k6'
+import { sleep, check } from 'k6'
 import http from 'k6/http'
 export const options = {
     executor:'per-vu-iterations',
     iterations: 1000,
-    vus: 100,
-    duration: '15s'
+    vus: 300,
+    duration: '45s'
 }
 
 export default function () {
-    http.get('http://localhost:4503/product/all')
-    sleep(1)
+    const url = 'http://localhost:4503/product/all';
+    const params = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    const response = http.get(url, params);
+
+    check(response, {
+        'returns a status 200': (res) => res.status === 200
+    } )
+
+ 
 }

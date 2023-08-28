@@ -14,8 +14,8 @@ describe('Login Page Tests', () => {
   });
 
   it('should fill in and submit the login form', () => {
-    cy.get('input#email').type('user@example.com');
-    cy.get('input#password').type('password123');
+    cy.get('input#email').type('kevoooo@icloud.com');
+    cy.get('input#password').type('12345678');
     cy.get('form#form-login').submit();
   });
 
