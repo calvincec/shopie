@@ -10,7 +10,7 @@ const cancelbtn = document.querySelector('.cancelbtn')
 const addproductfm = document.querySelector('.addproductfm')
 const addnew = document.querySelector('.addnew')
 const updatebtn = document.querySelector('.btn')
-
+let profileurl = ''
 
 
 addproduct.style.display = 'none'
@@ -120,38 +120,63 @@ function generateProductCards(productsToDisplay) {
             addproduct.style.marginRight= 'auto';
             addproduct.style.boxShadow = 'rgba(0, 0, 0, 0.56) 0px 22px 70px 4px';
 
-            addproductfm.addEventListener('submit', async(e)=>{
-                e.preventDefault()
-                // const productName = document.querySelector('#product-name')
-                // const productDescription = document.querySelector('#product-description')
-                // const price = document.querySelector('#product-price')
-                const prodimg = document.querySelector('#product-image')
-                // const stock = document.querySelector('#product-stock')
-                const msg = document.querySelector('.msg')
+
+            const prodimg = document.querySelector('#product-image')
+    
+    
+    
+            prodimg.addEventListener('change', async(event)=>{
+                event.preventDefault()
+                const target = event.target
+                const files = target.files
+                if(files){
+                    const formData = new FormData()
+                    formData.append("file", files[0])
+                    formData.append("upload_preset", "shopie")
+                    formData.append("cloud_name", "dzuzy670c")
         
-                const productNam = productName.value
-                const productDesc = productDescription.value 
-                const pric = price.value
-                const prodim = prodimg.value
-                const stoc = stock.value
+                    await fetch('https://api.cloudinary.com/v1_1/dzuzy670c/image/upload', {
+                        method: "POST",
+                        body: formData
+                    }).then((res) => res.json()).then(res => profileurl = res.url)
+        
+                    let profileurl2  = await profileurl
+
+
+                    //
+                    addproductfm.addEventListener('submit', async(e)=>{
+                        e.preventDefault()
+                        const prodimg = document.querySelector('#product-image')
+                        const msg = document.querySelector('.msg')
                 
-                
-                const values = [productNam, productDesc, pric,prodim, stoc, product.productId]
-                const res = await editproduct(values)
-                if (res == "product updated successfully") {
-                    addproductfm.reset();
-                
-                    msg.innerHTML = 'Product updated successfully';
-                    msg.style.color = "green";
-                    msg.style.marginBottom = "10px"
-                
-                    setTimeout(() => {
-                        msg.innerHTML = '';
-                        // updateProductCards();
-                        location.reload()
-                    }, 1000);
+                        const productNam = productName.value
+                        const productDesc = productDescription.value 
+                        const pric = price.value
+                        const stoc = stock.value
+                        
+                        
+                        const values = [productNam, productDesc,pric, profileurl2, stoc, product.productId]
+                        const res = await editproduct(values)
+                        if (res == "product updated successfully") {
+                            addproductfm.reset();
+                        
+                            msg.innerHTML = 'Product updated successfully';
+                            msg.style.color = "green";
+                            msg.style.marginBottom = "10px"
+                        
+                            setTimeout(() => {
+                                msg.innerHTML = '';
+                                // updateProductCards();
+                                location.reload()
+                            }, 1000);
+                        }
+                    })
+
+
                 }
             })
+
+            
            
         })
     });
@@ -269,23 +294,96 @@ eddtoproducts.addEventListener('click',()=>{
     addproduct.style.marginLeft= 'auto'; 
     addproduct.style.marginRight= 'auto';
     addproduct.style.boxShadow = 'rgba(0, 0, 0, 0.56) 0px 22px 70px 4px';
+    const prodimg = document.querySelector('#product-image')
+    
+    
+    
+    prodimg.addEventListener('change', async(event)=>{
+        const target = event.target
+        const files = target.files
+        if(files){
+            const formData = new FormData()
+            formData.append("file", files[0])
+            formData.append("upload_preset", "shopie")
+            formData.append("cloud_name", "dzuzy670c")
+
+            await fetch('https://api.cloudinary.com/v1_1/dzuzy670c/image/upload', {
+                method: "POST",
+                body: formData
+            }).then((res) => res.json()).then(res => profileurl = res.url)
+
+            let profileurl2  = await profileurl
+
+
+            //
+            addproductfm.addEventListener('submit', async(e)=>{
+                e.preventDefault()
+        
+                
+                const productName = document.querySelector('#product-name')
+                const productDescription = document.querySelector('#product-description')
+                const price = document.querySelector('#product-price')
+                // const prodimg = document.querySelector('#product-image')
+                const stock = document.querySelector('#product-stock')
+                const msg = document.querySelector('.msg')
+        
+                const productNam = productName.value
+                const productDesc = productDescription.value 
+                const pric = price.value
+                // const prodim = prodimg.value
+                
+                const stoc = stock.value
+        
+                // let profileurl2 = "eded"
+        
+                const values = [productNam, productDesc, pric,profileurl2, stoc]
+                const res = await newproduct(values)
+                if (res == "product Added successfully") {
+                    addproductfm.reset();
+                
+                    msg.innerHTML = 'Product added successfully';
+                    msg.style.color = "green";
+                    msg.style.marginBottom = "10px"
+                    
+                
+                    setTimeout(() => {
+                        msg.innerHTML = '';
+                        productContaineradm.innerHTML=''
+                        location.reload()
+                        // updateProductCards();
+                        
+                    }, 1000);
+                }
+            })
+
+        }
+    })
+
+   
+
+
 
     addproductfm.addEventListener('submit', async(e)=>{
         e.preventDefault()
+
+        
         const productName = document.querySelector('#product-name')
         const productDescription = document.querySelector('#product-description')
         const price = document.querySelector('#product-price')
-        const prodimg = document.querySelector('#product-image')
+        // const prodimg = document.querySelector('#product-image')
         const stock = document.querySelector('#product-stock')
         const msg = document.querySelector('.msg')
 
         const productNam = productName.value
         const productDesc = productDescription.value 
         const pric = price.value
-        const prodim = prodimg.value
+        // const prodim = prodimg.value
+        
         const stoc = stock.value
 
-        const values = [productNam, productDesc, pric,prodim, stoc]
+        let profileurl2 = "eded"
+
+        const values = [productNam, productDesc, pric,profileurl2, stoc]
         const res = await newproduct(values)
         if (res == "product Added successfully") {
             addproductfm.reset();
