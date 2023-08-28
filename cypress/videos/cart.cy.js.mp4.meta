@@ -1,0 +1,16 @@
+;FFMETADATA1
+[CHAPTER]
+TIMEBASE=1/1000
+START=4718
+END=12863
+title=template spec should remove a product from the cart and update UI
+[CHAPTER]
+TIMEBASE=1/1000
+START=0
+END=null
+title=template spec should display total items in cart
+[CHAPTER]
+TIMEBASE=1/1000
+START=0
+END=null
+title=template spec should display total price
