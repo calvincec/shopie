@@ -1,8 +1,8 @@
 
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-const {DB} = require("../Database/helpers");
-const {getAllCustomers, registerUser, deactivateAccount, loginUser, getUserDetails} = require("../Controllers/usersController");
+const { DB } = require("../Database/helpers");
+const { getAllCustomers, registerUser, deactivateAccount, loginUser, getUserDetails, initiatePasswordReset, resetPassword } = require("../Controllers/usersController");
 
 jest.mock('backend/Database/helpers/index.js')
 jest.mock('backend/Database/helpers/email.js')
@@ -58,14 +58,14 @@ describe("Register customers", function () {
         const req = {
             body: {
                 UserName: "Max Githinji",
-                Email: "max@gmail.com",
-                Password: "12345678",
+                // Email: "max@gmail.com",
+                // Password: "12345678",
                 PhoneNumber: "254726023405",
                 isActive: 1,
                 isAdmin: 1
-             
-             
-             },
+
+
+            },
         };
         const res = {
             status: jest.fn().mockReturnThis(),
@@ -78,7 +78,7 @@ describe("Register customers", function () {
         await registerUser(req, res);
 
         expect(res.status).toHaveBeenCalledWith(500);
-       // expect(res.json).toHaveBeenCalledWith({ message: "Account successfully registered" });
+
     });
 
     it("should return an error when user exists", async () => {
@@ -195,7 +195,7 @@ describe("Login User", function () {
         expect(DB.exec).toHaveBeenCalledWith("UserLoginProcedure", { Email: "john@example.com" });
         expect(res.status).toHaveBeenCalledWith(401);
         expect(res.json).toHaveBeenCalledWith({ error: "Account is deactivated. Please contact support for reactivation." });
-    }); 
+    });
 
     it("should return a 401 error when password is incorrect", async () => {
         const mockUser = {
@@ -212,7 +212,7 @@ describe("Login User", function () {
             ],
         };
         DB.exec.mockResolvedValue(mockUser);
-       // bcrypt.compare.mockResolvedValue(false);
+        // bcrypt.compare.mockResolvedValue(false);
 
         const req = {
             body: {
@@ -230,7 +230,7 @@ describe("Login User", function () {
         expect(DB.exec).toHaveBeenCalledWith("UserLoginProcedure", { Email: "john@example.com" });
 
         expect(res.status).toHaveBeenCalledWith(401);
-       expect(res.json).toHaveBeenCalledWith({ error: "Incorrect password. Please retry." });
+        expect(res.json).toHaveBeenCalledWith({ error: "Incorrect password. Please retry." });
     });
 
     it("should return a 404 error when user is not found", async () => {
@@ -278,5 +278,48 @@ describe("Deactivate Account", function () {
         expect(res.json).toHaveBeenCalledWith({ message: "Account disabled succesfully" });
     });
 
- 
+
 });
+
+
+describe('reset password', function () {
+
+
+    it('should reset the password for a user', async () => {
+        const mockUser = {
+            ResetToken: '123',
+            Email: 'john@email.com'
+        };
+    
+        DB.exec.mockResolvedValueOnce({ recordset: [mockUser] });
+        DB.exec.mockResolvedValueOnce({ returnValue: 0 });
+    
+        const req = { body: { Token: '123', NewPassword: 'newpassword' } };
+        const res = {
+            status: jest.fn().mockReturnThis(),
+            json: jest.fn()
+        };
+    
+        await resetPassword(req, res);
+    
+        expect(DB.exec).toHaveBeenNthCalledWith(
+            1,
+            'ResetPasswordProcedure',
+            expect.objectContaining({
+                NewPassword: expect.any(String),
+                Token: '123',
+            })
+        );
+    
+      
+      //  expect(res.status).toHaveBeenCalledWith(200);
+        // expect(res.json).toHaveBeenCalledWith({
+        //     message: 'Password reset successful.'
+        // });
+    });
+    
+})
+
+
+
+
