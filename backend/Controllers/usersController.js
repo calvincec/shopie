@@ -143,6 +143,7 @@ const loginUser = async (req, res) => {
 }
 const initiatePasswordReset = async (req, res) => {
     try {
+
         const { Email } = req.body;
 
         const user = await DB.exec("CheckIfUserExistsProcedure", { Email });
@@ -151,6 +152,7 @@ const initiatePasswordReset = async (req, res) => {
                 error: "No account under that email exists"
             });
         } else {
+
 
             const resetToken = v4();
 
@@ -162,10 +164,59 @@ const initiatePasswordReset = async (req, res) => {
                     to: Email,
                     subject: 'Password Reset Request',
                     html: `
-                    <p>Hello!</p>
-                    <p>We received a request to reset your password. Please use the following link to reset your password:</p>
-                    <a href="http://127.0.0.1:5500/Frontend/reset-password.html?token=${resetToken}">Reset Password</a>
-                    <p>If you did not request a password reset, you can ignore this email.</p>
+                    <html>
+                    <head>
+                        <style>
+                            body {
+                                font-family: Arial, sans-serif;
+                                margin: 0;
+                                padding: 0;
+                            }
+                            
+                            .container {
+                                max-width: 600px;
+                                margin: 0 auto;
+                                padding: 20px;
+                                border: 1px solid #e0e0e0;
+                                border-radius: 5px;
+                                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                            }
+                            
+                            .content {
+                                margin-top: 20px;
+                                text-align: center;
+                            }
+                            
+                            .button {
+                                display: inline-block;
+                                background-color: #007bff;
+                                color: #fff;
+                                padding: 10px 20px;
+                                border-radius: 5px;
+                                text-decoration: none;
+                            }
+                            
+                            .footer {
+                                margin-top: 20px;
+                                text-align: center;
+                                color: #888;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="container">
+                            <div class="content">
+                                <p>Hello!</p>
+                                <p>We received a request to reset your password. Please use the following link to reset your password:</p>
+                                <p><a class="button" href="http://127.0.0.1:5500/Frontend/reset-password/reset-password.html?token=${resetToken}">Reset Password</a></p>
+                                <p>If you did not request a password reset, you can ignore this email.</p>
+                            </div>
+                            <div class="footer">
+                                <p>Best regards,<br>The Shoppie Team</p>
+                            </div>
+                        </div>
+                    </body>
+                    </html> 
                 `,
                 };
 
@@ -195,44 +246,89 @@ const resetPassword = async (req, res) => {
 
 
         const hashedPassword = await bcrypt.hash(NewPassword, 10)
+        const query = `SELECT * FROM Users WHERE ResetToken = '${Token}' `
+
+        const userResult = await DB.query(query);
+
         const result = await DB.exec('ResetPasswordProcedure', { Token, NewPassword: hashedPassword });
 
-        const user = await DB.exec("GetUserByResetTokenProcedure", { Token });
+        const users = userResult.recordset;
 
+ 
 
-
-        const userMessageOptions = {
+        const mailOptions = {
             from: process.env.ADMIN_EMAIL,
-            to: Email,
-            subject: 'Account Registration',
+            to: users[0].Email,
+            subject: 'Password Reset Successful',
             html: `
-        <div style="font-family: Arial, sans-serif; background-color: #f7f7f7; padding: 20px;">
-            <h2  style="color: #333333; text-align: center;">Hello ${UserName},</h2>
-       
-        <p style="text-align: center;">This is to inform you that your passwod has been successfully reset.</p>
-                <p style="text-align: center;">If this was not you, please contact us immediately.</p>
-   
-                 <p style="text-align: center; ">Best regards,</p>
-                <p style="text-align: center; ">The Shoppie Team</p>
-            </div>
-        </div>
-    `,
+            <html>
+            <head>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        margin: 0;
+                        padding: 0;
+                    }
+                    
+                    .container {
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        border: 1px solid #e0e0e0;
+                        border-radius: 5px;
+                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                    }
+                    
+                    .content {
+                        margin-top: 20px;
+                        text-align: center;
+                    }
+                    
+                    .button {
+                        display: inline-block;
+                        background-color: #007bff;
+                        color: #fff;
+                        padding: 10px 20px;
+                        border-radius: 5px;
+                        text-decoration: none;
+                    }
+                    
+                    .footer {
+                        margin-top: 20px;
+                        text-align: center;
+                        color: #888;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="content">
+                        <p> <b>Hello ${users[0].Username}! </b></p>
+                        <p>Your password was succesfully reset.</p>
+                        <p>If you did not reset it, please contact us immediately.</p>
+                    </div>
+                    <div class="footer">
+                        <p>Best regards,<br>Shoppie</p>
+                    </div>
+                </div>
+            </body>
+            </html> 
+        `,
         };
-        if (result.returnValue === 0) {
+            
+            if (result.returnValue === 0) {
 
-            await sendMail(userMessageOptions)
-            return res.status(200).json({
+                await sendMail(mailOptions)
+                return res.status(200).json({
+                    message: 'Password reset successful.',
+                });
 
 
-                message: 'Password reset successful.',
-            });
-
-
-        } else {
-            return res.status(400).json({
-                error: 'Password reset failed. Invalid token or password.',
-            });
-        }
+            } else {
+                return res.status(400).json({
+                    error: 'Password reset failed. Invalid token or password.',
+                });
+            }
     } catch (error) {
         console.log(error);
         return res.status(500).json({
@@ -286,13 +382,13 @@ module.exports = {
 };
 
 
-const deactivateAccount = async(req, res) => {
+const deactivateAccount = async (req, res) => {
     try {
-        const {UserID} = req.params
-        const result = await DB.exec("DisableUserAccount", {UserID})
+        const { UserID } = req.params
+        const result = await DB.exec("DisableUserAccount", { UserID })
 
         console.log(result);
-        if(result.returnValue === 0){
+        if (result.returnValue === 0) {
             return res.status(200).json({
                 message: "Account disabled succesfully"
             })
