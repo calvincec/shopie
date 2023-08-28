@@ -12,6 +12,7 @@ let totalItemsElement = document.getElementById('total-items')
 let totalCostsElement = document.getElementById('total-price')
 
 
+let checkoutButton = document.getElementById('checkout-button')
 let checkOutSection = document.getElementById('cart-section')
 greetingsElement.innerText = decodedToken.UserName
 async function fetchProductsInCart() {
@@ -37,7 +38,11 @@ async function fetchProductsInCart() {
             cartItemsContainer.style.display = "flex"
             checkOutSection.style.display = "block"
         }
-        console.log(data);
+       
+        checkoutButton.addEventListener('click', () => {
+            alert(`Your total is Ksh. ${data.totalPrice}. Thank you for shopping with us` )
+        })
+        
 
 
         totalCostsElement.innerText = `${data.totalPrice}`  

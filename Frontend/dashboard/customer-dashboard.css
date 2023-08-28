@@ -161,6 +161,8 @@ span.psw {
   max-height: 1.4em;
    
 }
+
+
 .product-card input{
 
   padding: 05px;
@@ -170,11 +172,7 @@ span.psw {
 .product-container {
   display: flex;
   flex-wrap: wrap;
-  flex-wrap: wrap;
-  /* justify-content: space-between; */
-  margin-left: 10px;
-  margin-right: 10px;
-  
+
 }
 
 
@@ -183,9 +181,11 @@ span.psw {
    margin-bottom: 20px;
    display: flex;
    flex-wrap: wrap;
+   justify-content: center;
+   
 }
-.add-to-cart>input{
-  margin-right: 10px;
+.add-to-cart > button{
+  margin-top: -10px;
 }
 
 /* Media Queries */
