@@ -43,13 +43,12 @@ describe('Login Page Tests', () => {
   });
 
 
-  //  cy.url().should('eq', 'http://127.0.0.1:5500/Frontend/register/register.html')
 
   it('should login and proceed to dashboard', () => {
-    cy.get('input#email').type('kevoooo@icloud.com');
+    cy.get('input#email').type('fonani9890@hainals.com');
     cy.get('input#password').type('12345678');
     cy.get('form#form-login').submit();
-      //  cy.url().should('eq', 'http://127.0.0.1:5500/Frontend/dashboard/dashboard.html')
+    
   });
 
 });
