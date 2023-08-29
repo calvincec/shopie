@@ -12,6 +12,15 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.product-cardadm > p, .product-cardadm > h3{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+
+  /* max-height = line-height * number of lines (using em) */
+  max-height: 1.4em;
+}
 .product-cardadm {
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -22,7 +31,7 @@
     width: calc(16.666% - 20px);
     box-sizing: border-box;
     text-align: center;
-   height: 500px;
+   height: 400px;
   }
   .product-cardadm img {
     max-width: 100%;
