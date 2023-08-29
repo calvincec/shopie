@@ -241,7 +241,6 @@ describe("Login User", function () {
             ],
         };
         DB.exec.mockResolvedValue(mockUser);
-        // bcrypt.compare.mockResolvedValue(false);
 
         const req = {
             body: {
@@ -338,13 +337,7 @@ describe('reset password', function () {
                 NewPassword: expect.any(String),
                 Token: '123',
             })
-        );
-    
-      
-      //  expect(res.status).toHaveBeenCalledWith(200);
-        // expect(res.json).toHaveBeenCalledWith({
-        //     message: 'Password reset successful.'
-        // });
+        )
     });
     
 })
